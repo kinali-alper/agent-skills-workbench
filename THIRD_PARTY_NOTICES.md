@@ -33,3 +33,9 @@ All vendored skills under `vendor/` are redistributed under their original licen
 | writing-for-agents | mattpocock/skills | Matt Pocock | MIT |
 
 Fixture images: picsum.photos (Unsplash-licensed placeholders, referenced by URL, not redistributed).
+
+## Test material
+
+| File | Source | License |
+|---|---|---|
+| `skills/ux-a11y-review-workspace/real-page-w3c-bad/home.before.html` | W3C WAI "Before and After Demonstration" (2012), fetched 2026-09-18 | [W3C Document License](https://www.w3.org/copyright/document-license/) — Copyright © 2012 W3C® (MIT, ERCIM, Keio) |

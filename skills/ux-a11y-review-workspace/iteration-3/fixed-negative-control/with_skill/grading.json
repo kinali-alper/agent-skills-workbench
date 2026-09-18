@@ -1,0 +1,27 @@
+{
+  "run": "fixed-negative-control/with_skill",
+  "pass_rate": 1.0,
+  "note": "GEÇTİ — genişletilen kurallar temiz dosyada yanlış ihlal üretmedi.",
+  "expectations": [
+    {
+      "text": "A hükümlerinin hiçbiri ihlal değil",
+      "passed": true,
+      "evidence": "0 ihlal; A1/A5/A6 genişletmesi → doğrulanamaz (sayfa düzeyi / CSS), ihlal değil"
+    },
+    {
+      "text": "U hükümlerinin hiçbiri ihlal değil",
+      "passed": true,
+      "evidence": "0 ihlal"
+    },
+    {
+      "text": "≤2 bulgu, şiddet ≤1",
+      "passed": true,
+      "evidence": "0 bulgu; 3 şiddet-1 not 'Notlar'da (🗑 aria-hidden tutarsızlığı, * + aria-required çift duyuru, blur hataları canlı bölgede değil)"
+    },
+    {
+      "text": "Tam hüküm",
+      "passed": true,
+      "evidence": "21/21: 14 uygun · 1 uygulanamaz · 6 doğrulanamaz"
+    }
+  ]
+}

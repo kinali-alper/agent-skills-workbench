@@ -24,7 +24,7 @@ ids=$(files | xargs -0 grep -noE -- '\b[0-9]{11}\b' 2>/dev/null | grep -v 123456
 if [ -n "$ids" ]; then echo "11 haneli sayı bulundu (kimlik no?):"; echo "$ids"; exit 1; fi
 
 # E-posta adresleri — noreply ve örnek alan adları hariç
-mails=$(files | xargs -0 grep -noE -- '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}' 2>/dev/null | grep -viE 'noreply|ornek\.com|example\.com|company\.com|@ex\.com|anthropic\.com|fsck\.com')
+mails=$(files | xargs -0 grep -noE -- '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}' 2>/dev/null | grep -viE 'noreply|ornek\.com|example\.com|company\.com|@ex\.com|anthropic\.com|fsck\.com|@w3\.org')
 if [ -n "$mails" ]; then echo "E-posta adresi bulundu:"; echo "$mails"; exit 1; fi
 
 echo "TEMİZ — $(git ls-files --cached --others --exclude-standard | wc -l) dosya tarandı."

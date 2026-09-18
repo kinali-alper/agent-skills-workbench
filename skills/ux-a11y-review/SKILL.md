@@ -48,12 +48,12 @@ Aşağıdaki A-listesinin her satırına hüküm ver. Kural metni ve kod reçete
 
 | A | Kontrol | WCAG |
 |---|---|---|
-| A1 | Sayfada tek `h1`, başlıklar hiyerarşik, `main` landmark | 1.3.1 · 2.4.6 |
+| A1 | Sayfada tek `h1`, başlıklar hiyerarşik, `main` landmark; **sayfa düzeyinde** tekrarlayan bloğu atlama linki (bileşen dosyasında: doğrulanamaz) | 1.3.1 · 2.4.1 · 2.4.6 |
 | A2 | Bilgi taşıyan görselde anlamlı `alt`; süs görselde `alt=""` | 1.1.1 |
 | A3 | Metin kontrastı ≥ 4.5:1 (büyük metin / UI ≥ 3:1) | 1.4.3 · 1.4.11 |
 | A4 | Her form denetimi programatik etikete bağlı (`label for`, `aria-labelledby`) | 1.3.1 · 3.3.2 |
-| A5 | Hata ve durum rengin yanında metin/ikonla iletilir; `aria-invalid` + `aria-describedby` | 1.4.1 · 3.3.1 |
-| A6 | Odak görünür: `:focus-visible` ile ≥ 3:1 kontrastlı gösterge; kaldırılan outline yerine eşdeğer var | 2.4.7 · 2.4.11 |
+| A5 | Renk tek sinyal değil: hata/durum metin+ikonla (`aria-invalid` + `aria-describedby`); gövde metni içindeki link altı çizili ya da renk dışı bir ayırt ediciyle | 1.4.1 · 3.3.1 |
+| A6 | Odak görünür **ve kalır**: `:focus-visible` ile ≥ 3:1 gösterge; kaldırılan outline yerine eşdeğer var; script ile odak düşürülmez (`onfocus=blur`) | 2.4.7 · 2.4.11 |
 | A7 | Etkileşimli öğe **native** (`button`, `a href`, form denetimi); `div/span` + onClick yerine | 2.1.1 · 4.1.2 |
 | A8 | Yalnız ikon/emoji taşıyan denetimde erişilebilir ad (`aria-label` / gizli metin) | 4.1.2 · 2.5.3 |
 | A9 | Tıklama hedefi ≥ 24×24 CSS px (inline metin linki hariç) | 2.5.8 |

@@ -1,0 +1,17 @@
+{
+  "run": "fixed-negative-control/without_skill",
+  "pass_rate": 0.5,
+  "note": "Baseline yine daha eleştirel; 'aşağıda' yön hatası fixture'a taşınacak (küçük).",
+  "expectations": [
+    {
+      "text": "Gerçek sorun buldu mu",
+      "passed": true,
+      "evidence": "Evet: 'aşağıda işaretli alanları' metni ama status bölgesi alanların ALTINDA (yön hatası, gerçek nit); Kaydet'te pending/çift gönderim koruması yok"
+    },
+    {
+      "text": "≤2 bulgu",
+      "passed": false,
+      "evidence": "11 bulgu; KVKK, tablo alakasızlığı gibi kapsam dışı maddeler dahil"
+    }
+  ]
+}

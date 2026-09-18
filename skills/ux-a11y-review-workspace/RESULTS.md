@@ -40,3 +40,30 @@ fixture bugs fixed; all six Playwright tests kept green.
 ## Status
 Draft. The fixture no longer discriminates on *finding*; further fixture-driven edits would be overfitting.
 Next gate: a real, publicly reachable page, run in a session with a browser (step 4 — Tab-through — has not yet executed).
+
+## Real page — W3C WAI "Before and After Demo" (inaccessible home page), 2026-09-18
+
+Run in the main session with the browser pane (first execution of step 4). Report written **before** opening
+W3C's own failure report; comparison appended afterwards. Files: `real-page-w3c-bad/`.
+
+| | Count | Criteria |
+|---|---|---|
+| Found | **15 / 19** AA | 1.1.1 · 1.3.1 · 1.4.3 · 1.4.5 · 2.1.1 · 2.4.2 · 2.4.4 · 2.4.6 · 2.4.7 · 3.1.1 · 3.2.1 · 3.2.2 · 3.2.5 · 3.3.2 · 4.1.2 |
+| Partial | 2 | 1.3.2 (layout-table reading order), 3.2.4 (inconsistent link naming) |
+| Missed | 2 | **1.4.1** links distinguished by colour only · **2.4.1** no skip link |
+| Out of scope | 8 | 7 AAA criteria; 4.1.1 (removed in WCAG 2.2) |
+
+The top finding (severity 4) came from **step 4, not the checklist**: 16 Tab presses logged via `focusin`/`focusout`
+showed every one of 14 links receiving focus and dropping it instantly (`onfocus="blur();"`) — keyboard users can
+reach only 2 of 21 focusable elements. Static reading would have said "probably"; the browser proved it.
+
+Both misses were checklist gaps, not oversight → A5 widened (colour-only applies to links, not just errors),
+A1 widened (page-level skip link), A6 widened (focus must *persist*). First skill edit justified by real-page evidence.
+Negative control re-run as iteration-3 to confirm the widened rules add no false `ihlal` on a clean file.
+
+## iteration-3 — negative control after the real-page widening
+
+| | Result |
+|---|---|
+| With skill | **PASS** — 0 violations · 14 compliant · 1 n/a · 6 unverifiable (A1 skip link, A3/A5/A6/A9 CSS, A12 host). The widened A1/A5/A6 produced no false `ihlal`; the "page-level" scoping on A1 resolved to `doğrulanamaz` on a component file, as intended. |
+| Without skill | 11 notes; one legitimate nit ("aşağıda" in the status text while the region renders below the fields) → fixed in fixture. |

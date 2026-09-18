@@ -39,7 +39,7 @@ export default function FixedForm() {
     setSubmitted(true)
     const first = (Object.keys(errors) as Field[])[0]
     if (first) {
-      setStatus('Kayıt yapılamadı: aşağıda işaretli alanları düzeltin.')
+      setStatus('Kayıt yapılamadı: işaretli alanları düzeltin.')
       document.getElementById(first)?.focus()
       return
     }
