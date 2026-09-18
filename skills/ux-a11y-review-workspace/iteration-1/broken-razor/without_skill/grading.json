@@ -1,0 +1,47 @@
+{
+  "run": "broken-razor/without_skill",
+  "pass_rate": 0.88,
+  "note": "18/19 (U2 İptal kaçtı); 397 satır (5×); Razor reçeteleri skill'siz de tam",
+  "expectations": [
+    {
+      "text": "label asp-for",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "asp-validation-for",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "TempData/Redirect",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "A11 tablo",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "A7",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "H7",
+      "passed": true,
+      "evidence": "10 geçiş — daha derin (autofocus, kısayol)"
+    },
+    {
+      "text": "Tam hüküm",
+      "passed": false,
+      "evidence": "serbest biçim"
+    },
+    {
+      "text": "Uydurma yok",
+      "passed": true,
+      "evidence": ""
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "run": "broken-html/with_skill",
+  "pass_rate": 1.0,
+  "note": "19/19; 85 satır",
+  "expectations": [
+    {
+      "text": "A11 tablo",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "A4-A10 ≥6/7",
+      "passed": true,
+      "evidence": "7/7"
+    },
+    {
+      "text": "U1,U2,U5",
+      "passed": true,
+      "evidence": "3/3; alert('kaydedildi') sahte başarı yakalandı"
+    },
+    {
+      "text": "Tam hüküm",
+      "passed": true,
+      "evidence": "21/21; A12 'yok' (lang=tr doğru)"
+    },
+    {
+      "text": "Uydurma yok",
+      "passed": true,
+      "evidence": "kontrast formülle hesaplandı 2,81:1 / 4,13:1"
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "run": "broken-tsx/with_skill",
+  "pass_rate": 1.0,
+  "note": "19/19 fixture hatası; 82 satır; süreç (heuristic-evaluation çağrısı, locale-tr) izlendi",
+  "expectations": [
+    {
+      "text": "A11 tablo raporlanmış",
+      "passed": true,
+      "evidence": ":21-26 caption/th yok, 'axe'ten kaçar' notu"
+    },
+    {
+      "text": "A4 placeholder-etiket",
+      "passed": true,
+      "evidence": ":9-11 şiddet 4"
+    },
+    {
+      "text": "A5 renk-tek-sinyal",
+      "passed": true,
+      "evidence": ":11"
+    },
+    {
+      "text": "A6 outline:none",
+      "passed": true,
+      "evidence": ":12"
+    },
+    {
+      "text": "A7 div-buton",
+      "passed": true,
+      "evidence": ":17 şiddet 4"
+    },
+    {
+      "text": "A8 emoji-buton",
+      "passed": true,
+      "evidence": ":18"
+    },
+    {
+      "text": "A9 16px hedef",
+      "passed": true,
+      "evidence": ":19"
+    },
+    {
+      "text": "A10 reduced-motion",
+      "passed": true,
+      "evidence": ":20"
+    },
+    {
+      "text": "U1 Kaydet sessiz",
+      "passed": true,
+      "evidence": ":17 şiddet 4, işleyici boş"
+    },
+    {
+      "text": "U2 iptal yok",
+      "passed": true,
+      "evidence": ":3"
+    },
+    {
+      "text": "U3 TC ipucu",
+      "passed": true,
+      "evidence": ":11"
+    },
+    {
+      "text": "U4 zorunlu/hata tutarsız",
+      "passed": true,
+      "evidence": ":7+:11"
+    },
+    {
+      "text": "U5 onaysız silme",
+      "passed": true,
+      "evidence": ":18"
+    },
+    {
+      "text": "U6 Yeni bağlamsız",
+      "passed": true,
+      "evidence": ":20"
+    },
+    {
+      "text": "U8 buraya tıklayın",
+      "passed": true,
+      "evidence": ":27"
+    },
+    {
+      "text": "A1–A13/U1–U8 tam hüküm",
+      "passed": true,
+      "evidence": "21/21, A12 uygulanamaz gerekçeli"
+    },
+    {
+      "text": "Her bulgu dosya:satır",
+      "passed": true,
+      "evidence": "26 satır-referanslı"
+    },
+    {
+      "text": "Düzeltmeler olumlu",
+      "passed": true,
+      "evidence": "'→ … yap/ekle/ver' biçimi tutarlı"
+    },
+    {
+      "text": "İnsan TODO var",
+      "passed": true,
+      "evidence": "6 madde, NVDA/TalkBack dahil"
+    },
+    {
+      "text": "Uydurma bulgu yok",
+      "passed": true,
+      "evidence": "Ek bulgular (#sil GET-silme, aria-hidden=false gereksiz) dosyada gerçek"
+    }
+  ]
+}

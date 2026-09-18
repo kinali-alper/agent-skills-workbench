@@ -1,0 +1,57 @@
+{
+  "run": "broken-tsx/without_skill",
+  "pass_rate": 0.8,
+  "note": "18/19; 223 satır (skill'linin 2.7 katı); U2 kaçtı; hüküm listesi yok",
+  "expectations": [
+    {
+      "text": "F1-F13 a11y",
+      "passed": true,
+      "evidence": "13/13"
+    },
+    {
+      "text": "U1",
+      "passed": true,
+      "evidence": "'form yok; gönderme, doğrulama ve geri bildirim yok'"
+    },
+    {
+      "text": "U2 iptal",
+      "passed": false,
+      "evidence": "hiç geçmiyor"
+    },
+    {
+      "text": "U3",
+      "passed": true,
+      "evidence": "TC alanı inputmode/pattern"
+    },
+    {
+      "text": "U4",
+      "passed": true,
+      "evidence": ":115-116 çelişki"
+    },
+    {
+      "text": "U5",
+      "passed": true,
+      "evidence": "onaysız silme"
+    },
+    {
+      "text": "U6",
+      "passed": true,
+      "evidence": ":190 bağlamlı yap"
+    },
+    {
+      "text": "Tam hüküm listesi",
+      "passed": false,
+      "evidence": "serbest biçim; hangi kuralın 'yok' olduğu belirsiz"
+    },
+    {
+      "text": "dosya:satır",
+      "passed": true,
+      "evidence": "29 ref"
+    },
+    {
+      "text": "Uydurma yok",
+      "passed": true,
+      "evidence": ""
+    }
+  ]
+}

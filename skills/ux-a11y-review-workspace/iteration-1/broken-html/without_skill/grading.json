@@ -1,0 +1,32 @@
+{
+  "run": "broken-html/without_skill",
+  "pass_rate": 0.6,
+  "note": "18/19; 260 satır; U2 kaçtı",
+  "expectations": [
+    {
+      "text": "A11 tablo",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "A4-A10 ≥6/7",
+      "passed": true,
+      "evidence": "7/7"
+    },
+    {
+      "text": "U1,U2,U5",
+      "passed": false,
+      "evidence": "U2 iptal kaçtı"
+    },
+    {
+      "text": "Tam hüküm",
+      "passed": false,
+      "evidence": "serbest biçim, 30 bulgu, 260 satır"
+    },
+    {
+      "text": "Uydurma yok",
+      "passed": true,
+      "evidence": "'Yeni!' 4.1:1 kontrast gerçek"
+    }
+  ]
+}

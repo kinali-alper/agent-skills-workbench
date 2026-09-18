@@ -1,0 +1,8 @@
+node_modules/
+playground/dist/
+playground/test-results/
+playground/playwright-report/
+playground/.lighthouseci/
+*.log
+.DS_Store
+Thumbs.db

@@ -1,0 +1,47 @@
+{
+  "run": "broken-razor/with_skill",
+  "pass_rate": 1.0,
+  "note": "19/19 + ek gerçek bulgular; 77 satır",
+  "expectations": [
+    {
+      "text": "label asp-for reçetesi",
+      "passed": true,
+      "evidence": "var"
+    },
+    {
+      "text": "asp-validation-for",
+      "passed": true,
+      "evidence": "var"
+    },
+    {
+      "text": "TempData/Redirect durum",
+      "passed": true,
+      "evidence": "var"
+    },
+    {
+      "text": "A11 tablo",
+      "passed": true,
+      "evidence": "th scope/caption"
+    },
+    {
+      "text": "A7 div→button submit",
+      "passed": true,
+      "evidence": "var"
+    },
+    {
+      "text": "H7 gözlemi (günde 30)",
+      "passed": true,
+      "evidence": "3 geçiş"
+    },
+    {
+      "text": "Tam hüküm",
+      "passed": true,
+      "evidence": "21/21 legend'lı"
+    },
+    {
+      "text": "Uydurma yok",
+      "passed": true,
+      "evidence": "GET-silme, $('form') tüm formlar — gerçek"
+    }
+  ]
+}

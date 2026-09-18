@@ -1,0 +1,79 @@
+{
+  "skill_name": "ux-a11y-review",
+  "notes": "Fixture'lar evals/cases/broken-form/ altındadır (repo kökü). Her koşuda fixture TEK BAŞINA temiz bir geçici klasöre kopyalanır; with-skill koşusunda skill'in evals/ hariç kopyası da oraya konur; alt-ajan repo'yu görmez — cevap anahtarı (expected.md) sızmasın. Baseline = ux-a11y-review hariç kurulu 26 skill (heuristic-evaluation, wq-accessibility vb. otomatik tetiklenebilir); delta tam olarak ux-a11y-review'ın eklediğini ölçer. Beklenen hata listesi ve satırlar: evals/cases/broken-form/expected.md.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "broken-tsx",
+      "prompt": "Bu React bileşenini UX ve erişilebilirlik açısından denetle. Proje dosyası olarak yalnız bu dosya var; skill ve referans dosyalarını okuyabilirsin. Arayüz dili Türkçe, kullanıcılar veliler (mobil, ilk kez).",
+      "files": ["evals/cases/broken-form/BrokenForm.tsx"],
+      "expected_output": "A1–A13 ve U1–U8 hükümleri; 19 yerleştirilen hatanın ≥16'sı dosya:satır ile; tablo (A11) bulunmuş; uydurma bulgu yok.",
+      "expectations": [
+        "A11 tablo başlıksızlığı (th/caption) raporlanmış",
+        "A4 placeholder-etiket raporlanmış",
+        "A5 renk-tek-sinyal hata raporlanmış",
+        "A6 outline:none raporlanmış",
+        "A7 div-buton raporlanmış",
+        "A8 emoji-buton adsız raporlanmış",
+        "A9 16px hedef raporlanmış",
+        "A10 reduced-motion eksik raporlanmış",
+        "U1 Kaydet görünür sonuç yok raporlanmış (H1)",
+        "U2 iptal/çıkış yolu yok raporlanmış (H3)",
+        "U3 TC alanı biçim ipucu yok raporlanmış (H5/H10)",
+        "U4 zorunlu/hata işareti tutarsızlığı raporlanmış (H4)",
+        "U5 onaysız silme raporlanmış (H3)",
+        "U6 bağlamsız 'Yeni!' raporlanmış (H8)",
+        "U8 'buraya tıklayın' raporlanmış (H2)",
+        "Kontrol listesi hükümleri bölümünde A1–A13 ve U1–U8'in tamamı için hüküm var",
+        "Her bulgu dosya:satır taşıyor",
+        "Düzeltmeler olumlu ifadeyle (ne yapılacağı) yazılmış",
+        "İnsan için TODO bloğu var (ekran okuyucu)",
+        "Dosyada olmayan bir hata uydurulmamış"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "broken-html",
+      "prompt": "Bu HTML sayfasını UX ve erişilebilirlik açısından denetle. Proje dosyası olarak yalnız bu dosya var; skill ve referans dosyalarını okuyabilirsin. Arayüz dili Türkçe, kullanıcılar veliler (mobil, ilk kez).",
+      "files": ["evals/cases/broken-form/broken.html"],
+      "expected_output": "TSX ile aynı bulgular; stack fark etmemeli.",
+      "expectations": [
+        "A11 tablo başlıksızlığı raporlanmış",
+        "A4, A5, A6, A7, A8, A9, A10 raporlanmış (en az 6/7)",
+        "U1, U2, U5 raporlanmış",
+        "Kontrol listesi hükümleri tam",
+        "Uydurma bulgu yok"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "broken-razor",
+      "prompt": "Bu ASP.NET Core Razor görünümünü UX ve erişilebilirlik açısından denetle. Proje dosyası olarak yalnız bu dosya var; skill ve referans dosyalarını okuyabilirsin. Arayüz dili Türkçe, kullanıcılar okul sekreterleri (masaüstü, günde 30 kez).",
+      "files": ["evals/cases/broken-form/BrokenForm.cshtml"],
+      "expected_output": "Aynı bulgular + Razor'a özgü reçeteler (label asp-for, asp-validation-for, TempData durum).",
+      "expectations": [
+        "A4 için <label asp-for> reçetesi verilmiş",
+        "A5 için asp-validation-for reçetesi verilmiş",
+        "U1 için TempData/RedirectToAction türü bir durum reçetesi verilmiş",
+        "A11 tablo (foreach tbody, th scope) raporlanmış",
+        "A7 div onclick submit → button type=submit raporlanmış",
+        "Günde 30 kez kullanan kullanıcı için H7 (klavye/verimlilik) gözlemi var",
+        "Kontrol listesi hükümleri tam",
+        "Uydurma bulgu yok"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "fixed-negative-control",
+      "prompt": "Bu React bileşenini UX ve erişilebilirlik açısından denetle. Proje dosyası olarak yalnız bu dosya var; skill ve referans dosyalarını okuyabilirsin. Arayüz dili Türkçe, kullanıcılar veliler (mobil, ilk kez).",
+      "files": ["evals/cases/broken-form/FixedForm.tsx"],
+      "expected_output": "En fazla 1-2 küçük bulgu (ör. görsel URL harici); A1–A13/U1–U8'den hiçbiri 'bulundu' değil.",
+      "expectations": [
+        "A1–A13 hükümlerinin hiçbiri 'bulundu' değil (yok / uygulanamaz)",
+        "U1–U8 hükümlerinin hiçbiri 'bulundu' değil",
+        "Toplam bulgu ≤ 2 ve hepsi şiddet ≤ 1",
+        "Kontrol listesi hükümleri tam"
+      ]
+    }
+  ]
+}

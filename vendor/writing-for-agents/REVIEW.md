@@ -1,0 +1,13 @@
+# REVIEW — writing-for-agents
+
+| Alan | Değer |
+|---|---|
+| Kaynak | mattpocock/skills · skills/productivity/writing-for-agents · commit c55ee46 (2026-09) · MIT |
+| Alınma | 2026-09-18, git clone --depth 1 → yalnız skill klasörü; `agents/openai.yaml` (Codex arayüz metadata'sı) atıldı |
+| Denetim | skill-audit.sh → TEMİZ; SKILL.md elle okundu |
+| Betik / binary | Yok |
+| allowed-tools / hook | Yok |
+| **Karar** | **ONAYLI** |
+
+## Notlar
+- Rol: UI/UX değil, **skill yazım / kapsam netleştirme** altyapısı. Kendi skill'lerimizin yazım rehberi: context pointer, bilgi hiyerarşisi, tamamlama kriteri, leading word, olumsuzlama yerine olumlu kural, budama.

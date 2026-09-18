@@ -1,0 +1,17 @@
+{
+  "run": "fixed-negative-control/without_skill",
+  "pass_rate": 0.5,
+  "note": "Baseline temiz dosyada yine daha eleştirel; B1/B2 fixture'a taşınabilir iyileştirme. Skill'in 'reportValidity balonu yeterli' hükmü zayıf nokta.",
+  "expectations": [
+    {
+      "text": "Gerçek sorun buldu mu",
+      "passed": true,
+      "evidence": "B1: TC dışı alanlar yalnız tarayıcı balonu (tarayıcı dilinde, geçici) — kalıcı Türkçe hata + aria-invalid yok; skill bunu '3.3.1 karşılanır' diye reddetmişti → tartışmalı ama UX olarak haklı. B2: aria-hidden yıldız → 'ile işaretli alanlar zorunludur' yarım okunur (gerçek nit)"
+    },
+    {
+      "text": "≤2 bulgu",
+      "passed": false,
+      "evidence": "10 bulgu (1 orta-yüksek, 4 orta, 5 düşük); KVKK notu, 'Kayıt→Kaydı' mikrokopi gibi kapsam dışı/öznel maddeler dahil"
+    }
+  ]
+}

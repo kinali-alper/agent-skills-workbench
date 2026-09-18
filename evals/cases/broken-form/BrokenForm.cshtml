@@ -1,0 +1,30 @@
+@model Okul.ViewModels.OgrenciKayitViewModel
+@{
+    ViewData["Title"] = "Öğrenci Kayıt";
+}
+
+<div class="broken">
+    <div style="font-size:28px;font-weight:700">@ViewData["Title"]</div>
+    <img src="~/img/okul.jpg" width="320" height="120" asp-append-version="true" />
+    <p class="text-muted" style="color:#9a9a9a">Lütfen tüm alanları doldurun. Zorunlu alanlar kırmızı ile işaretlidir.</p>
+
+    <form asp-action="Kayit" method="post">
+        <input asp-for="AdSoyad" placeholder="Ad Soyad" class="form-control" />
+        <input asp-for="Eposta" placeholder="E-posta" class="form-control" />
+        <input asp-for="TcKimlikNo" placeholder="TC Kimlik No" class="form-control is-invalid" />
+        <select asp-for="SinifId" asp-items="Model.Siniflar" class="form-select" style="outline:none">
+            <option value="" disabled selected>Sınıf seçin</option>
+        </select>
+        <div class="fake-btn" onclick="$('form').submit()">Kaydet</div>
+        <button type="button" class="icon-only" onclick="$('form')[0].reset()">🗑</button>
+    </form>
+    <a asp-action="Sil" asp-route-id="@Model.Id" style="display:inline-block;width:16px;height:16px;font-size:10px;line-height:16px">x</a>
+    <span class="pulse">Yeni!</span>
+    <table class="table">
+        @foreach (var not in Model.Notlar)
+        {
+            <tr><td>@not.Ders</td><td>@not.Puan</td></tr>
+        }
+    </table>
+    <a asp-action="Kosullar">buraya tıklayın</a>
+</div>

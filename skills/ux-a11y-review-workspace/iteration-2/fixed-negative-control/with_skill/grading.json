@@ -1,0 +1,27 @@
+{
+  "run": "fixed-negative-control/with_skill",
+  "pass_rate": 1.0,
+  "note": "GEÇTİ. Hüküm sözlüğü değişikliği işe yaradı: 'bulundu' belirsizliği yok; ajan sınır durumları gerekçeyle reddetti.",
+  "expectations": [
+    {
+      "text": "A hükümlerinin hiçbiri ihlal değil",
+      "passed": true,
+      "evidence": "0 ihlal; 16 uygun, 4 doğrulanamaz (A3/A6/A9/A12 CSS-kabuk), 1 uygulanamaz (A10)"
+    },
+    {
+      "text": "U hükümlerinin hiçbiri ihlal değil",
+      "passed": true,
+      "evidence": "0 ihlal"
+    },
+    {
+      "text": "≤2 bulgu, şiddet ≤1",
+      "passed": true,
+      "evidence": "0 bulgu; 4 sınır durum 'Notlar'da yanlış-pozitif olarak reddedildi (autoComplete=off, 🗑 görünür metinli, reportValidity balonu, boş formda onay)"
+    },
+    {
+      "text": "Tam hüküm",
+      "passed": true,
+      "evidence": "21/21, sözlük doğru kullanıldı"
+    }
+  ]
+}

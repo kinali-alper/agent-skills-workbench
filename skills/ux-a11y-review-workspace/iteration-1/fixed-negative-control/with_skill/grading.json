@@ -1,0 +1,27 @@
+{
+  "run": "fixed-negative-control/with_skill",
+  "pass_rate": 0.25,
+  "note": "KALDI — iki neden: (1) 'bulundu' iki anlamlı; (2) FixedForm U2'yi skill'in kendi tanımıyla sağlamıyor (kirli çıkış uyarısı yok)",
+  "expectations": [
+    {
+      "text": "A hükümlerinin hiçbiri 'bulundu' değil",
+      "passed": false,
+      "evidence": "9 A 'bulundu' — ama ajan 'bulundu'yu 'karşılanıyor' anlamında kullandı → SKILL.md terim belirsizliği (kritik)"
+    },
+    {
+      "text": "U hükümlerinin hiçbiri 'bulundu' değil",
+      "passed": false,
+      "evidence": "8 U 'bulundu' — aynı belirsizlik"
+    },
+    {
+      "text": "Toplam bulgu ≤2, şiddet ≤1",
+      "passed": false,
+      "evidence": "6 bulgu: 2×ş2 (TC erken doğrulama; İptal'de kirli-form uyarısı yok — SKILL.md U2 kuralının kendisi bunu ister → fixture eksiği), 3×ş1, 1×ş0"
+    },
+    {
+      "text": "Tam hüküm",
+      "passed": true,
+      "evidence": "21/21"
+    }
+  ]
+}

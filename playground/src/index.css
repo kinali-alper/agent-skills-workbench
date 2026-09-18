@@ -1,0 +1,27 @@
+:root { font-family: system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+body { margin: 0; padding: 24px; max-width: 640px; }
+.switch { display: flex; gap: 12px; margin-bottom: 24px; }
+.switch a[aria-current="page"] { font-weight: 700; text-decoration: none; }
+
+/* ---- broken ---- */
+.broken input, .broken select { display: block; margin: 8px 0; padding: 6px; }
+.broken .fake-btn { display: inline-block; padding: 8px 16px; background: #2b6cb0; color: #fff; border-radius: 4px; cursor: pointer; }
+.broken .icon-only { background: none; border: 0; font-size: 18px; }
+.pulse { display: inline-block; padding: 2px 8px; background: #e53e3e; color: #fff; border-radius: 999px;
+         animation: pulse 1s infinite; }
+@keyframes pulse { 0%,100% { transform: scale(1) } 50% { transform: scale(1.15) } }
+
+/* ---- fixed ---- */
+.fixed label { display: block; margin-top: 12px; font-weight: 600; }
+.fixed input, .fixed select { display: block; margin-top: 4px; padding: 8px; min-height: 24px; width: 100%; box-sizing: border-box; }
+.fixed :focus-visible { outline: 3px solid #1a56db; outline-offset: 2px; }
+.fixed .error { color: #b42318; margin: 4px 0 0; }
+.fixed .hint { color: #4a4a4a; font-size: 14px; margin: 4px 0 0; }
+.fixed .status { min-height: 1.5em; font-weight: 600; }
+.fixed .cancel { align-self: center; padding: 8px 12px; }
+.fixed .actions { display: flex; gap: 8px; margin-top: 16px; }
+.fixed button { min-width: 44px; min-height: 44px; padding: 8px 16px; }
+.fixed .badge { display: inline-block; margin-top: 16px; padding: 2px 8px; background: #b42318; color: #fff; border-radius: 999px; }
+.fixed table { margin-top: 16px; border-collapse: collapse; }
+.fixed th, .fixed td { border: 1px solid #ccc; padding: 6px 12px; text-align: left; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }

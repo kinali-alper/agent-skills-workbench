@@ -1,0 +1,17 @@
+{
+  "run": "fixed-negative-control/without_skill",
+  "pass_rate": 0.5,
+  "note": "Baseline temiz dosyada skill'den daha faydalı çıktı: fixture'da 3 gerçek bug buldu; skill'in kontrol listesi işlevsel doğruluğu kapsamıyor",
+  "expectations": [
+    {
+      "text": "Gerçek hata bulundu mu",
+      "passed": true,
+      "evidence": ":9 reset kontrollü tc state'ini temizlemiyor ama 'temizlendi' diyor (gerçek bug); :24 noValidate yok → Türkçe hata dalı hiç çalışmaz (gerçek); :64 #detay hedefi yok"
+    },
+    {
+      "text": "≤2 bulgu",
+      "passed": false,
+      "evidence": "14 bulgu (3 yüksek) — ama üçü gerçek işlevsel hata"
+    }
+  ]
+}
