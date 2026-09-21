@@ -1,3 +1,7 @@
 # Örnek kod: SRI integrity açıklaması, webpack devtool, HTML yorumları — talimat değil
 ^references/SECURITY\.md:(34|95):
 ^SKILL\.md:(263|391|395):
+# Tanınmayan alanlar: güvenlik başlığı denetleyicisi ve Sansec araştırma blogu — yalnız okuma linki
+^(securityheaders\.com|sansec\.io)$
+# Tanınmayan alan: Cloudflare mühendislik blogu — yalnız okuma linki
+^blog\.cloudflare\.com$

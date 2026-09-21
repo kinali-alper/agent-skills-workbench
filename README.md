@@ -26,18 +26,22 @@ Full table with upstream, pin, license, audit result and trigger phrases: [`vend
 | 5 Web quality | wq-seo · wq-performance · wq-core-web-vitals · wq-best-practices · wq-web-quality-audit | Lighthouse-family audits |
 | 6 Process / skill writing | writing-for-agents · grill-me · to-spec | How this repo's own skills are written |
 
-Every vendored skill is **pinned to the upstream commit whose blob matches ours** (verified by hash, 2026-09-21), carries the
+Every vendored skill is **pinned to the upstream commit whose blob matches ours** (verified by hash, 2026-09-21 — 20/27 byte-identical;
+7 differ only by a documented one-line edit: `name:` prefix on wq-* ×6, one trimmed description on ux-designer), carries the
 upstream `LICENSE` (26 MIT, 1 Apache-2.0), and has a `REVIEW.md` security record. Where the audit flags example code as a false
 positive, the exception lives in `AUDIT-ALLOW` with the reason in `REVIEW.md` — so **the audit's exit code is a real gate:
-all 27 return 0, and a planted malicious sample returns 2.**
+all 27 return 0, and the six samples in [`evals/audit/`](evals/audit/) return exactly their expected codes** (`scripts/test-audit.sh`).
+The audit is static; see [SECURITY.md](SECURITY.md) for what that does and does not mean. Every vendor file's sha256 is in
+[`vendor/INTEGRITY.sha256`](vendor/INTEGRITY.sha256); `install.sh` refuses a vendor whose files do not match it. All of this
+runs in CI on every push ([`gate.yml`](.github/workflows/gate.yml)).
 
 ## Install
 
 ```bash
 git clone https://github.com/kinali-alper/agent-skills-workbench
 cd agent-skills-workbench
-bash scripts/install.sh --only ux-a11y-review --only wq-accessibility --only web-design-guidelines --only heuristic-evaluation
-# or everything:  bash scripts/install.sh        (--dry-run to preview; existing folders are backed up, not overwritten)
+bash scripts/install.sh --only ux-a11y-review --with-deps     # the skill + the three it declares in metadata.requires
+# everything:  bash scripts/install.sh        (--dry-run to preview; existing folders are backed up, not overwritten; --prune-backups 2)
 ```
 Then in Claude Code: `arayüzü denetle src/pages/Login.tsx`, or `/ux-a11y-review`.
 

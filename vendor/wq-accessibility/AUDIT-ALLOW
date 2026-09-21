@@ -1,3 +1,5 @@
 # Örnek kodda açıklama yorumları ve erişilebilir şifre alanı örneği (3.3.8)
 ^SKILL\.md:368:
 ^references/WCAG\.md:157:
+# Tanınmayan alanlar: erişilebilirlik otoriteleri (TPGi, NV Access, Deque) — yalnız okuma linki
+^(www\.tpgi\.com|www\.nvaccess\.org|www\.deque\.com)$

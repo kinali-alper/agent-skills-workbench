@@ -19,7 +19,17 @@ for d in sorted(p for p in V.iterdir() if p.is_dir()):
     pin_s = f'`{pin.group(1)}` {pin.group(2)}' if pin else '—'
     lic = 'Apache-2.0' if 'Apache' in kaynak else ('MIT' if 'MIT' in kaynak else '—')
     katman = cell('Katman')
-    desc = (re.search(r'^description:\s*(.*)$', sk, re.M) or [None,''])[1].strip().strip('"')
+    m = re.search(r'^description:\s*(.*)$', sk, re.M)
+    desc = (m.group(1).strip() if m else '')
+    if desc in ('>', '|', '>-', '|-'):  # çok satırlı YAML: girintili devam satırlarını birleştir
+        tail = sk[m.end():].splitlines()
+        cont = []
+        for l in tail:
+            if l.startswith((' ', '	')) and l.strip(): cont.append(l.strip())
+            elif l.strip() == '': continue
+            else: break
+        desc = ' '.join(cont)
+    desc = desc.strip().strip('"')
     trig = re.findall(r'"([^"]{3,40})"', desc)[:4]
     trig_s = ', '.join(trig) if trig else (desc[:70] + '…' if len(desc) > 70 else desc)
     lines = sum(1 for _ in sk.splitlines())

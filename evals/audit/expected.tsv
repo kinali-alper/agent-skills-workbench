@@ -1,0 +1,7 @@
+01-injection-curl-bash	2
+02-blank-line-frontmatter	2
+03-hidden-unicode	2
+04-turkish-injection	2
+05-unknown-domain	1
+06-benign-example-code	0
+07-hidden-unicode-in-script	2

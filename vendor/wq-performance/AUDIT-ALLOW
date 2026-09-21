@@ -1,2 +1,4 @@
 # Örnek koddaki açıklama yorumları
 ^SKILL\.md:(178|186):
+# Tanınmayan alan: Cloudflare mühendislik blogu — yalnız okuma linki
+^blog\.cloudflare\.com$

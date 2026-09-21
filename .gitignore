@@ -7,3 +7,4 @@ playground/.lighthouseci/
 .DS_Store
 Thumbs.db
 vendor/.audit-status
+scripts/publish-check.local

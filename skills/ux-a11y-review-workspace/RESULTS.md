@@ -37,6 +37,23 @@ fixture bugs fixed; all six Playwright tests kept green.
 | With skill | **PASS** — 0 violations · 16 compliant · 4 unverifiable (CSS/shell) · 1 n/a; four borderline items rejected with reasons |
 | Without skill | 10 notes, 2 legitimate nits (persistent Turkish errors on non-TC fields; star sentence read half by screen readers) → fixed in fixture |
 
+## Limitations (read before citing any number above)
+
+- **n = 1 per condition.** Every with/without pair was run once. LLM output varies between runs; 19/19 vs 18/19 is one
+  draw, not a distribution. No repeats, no variance, no confidence interval.
+- **"+1 finding" is one finding.** The skill's only extra hit was U2 ("no cancel path") on all three fixtures — the same
+  planted defect found three times, not three independent gains.
+- **Grading was inline, by the same agent, against `expected.md`.** No second grader, no inter-rater agreement. Raw
+  subagent reports are not published (they echoed local paths); `grading.json` per run is.
+- **Fixture and checklist share an author.** The 19 defects, the A/U checklist and the pass criteria were written by the
+  same session. The negative control and the real page mitigate this; they do not remove it.
+- **The real page is well known.** W3C's "Before and After Demo" is a canonical accessibility teaching example and is
+  likely in model training data. Treat 15/19 as a floor-check, not as evidence about ordinary bad sites.
+- **Value is model-relative.** "Bare model finds 18/19" is a statement about one model on one date. It will drift as
+  models change; every future `grading.json` records `model` and `date`, and the baseline is re-run per model.
+- **Skill changed after the last eval.** SKILL.md gained a 36-criterion sweep step and A10 was rewritten on 2026-09-21;
+  iteration-4 (three fixtures + negative control + real page, plus a plain-prompt baseline) is owed before any status change.
+
 ## Skill status: draft
  The fixture no longer discriminates on *finding*; further fixture-driven edits would be overfitting.
 Next gate: a real, publicly reachable page, run in a session with a browser (step 4 — Tab-through — has not yet executed).

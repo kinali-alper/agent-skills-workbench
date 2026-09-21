@@ -1,6 +1,10 @@
 ---
 name: ux-a11y-review
 description: Arayüzü denetle — tam UX + erişilebilirlik denetimi (kullanılabilirlik incelemesi ve erişilebilirlik kontrolü tek raporda). Use for a full UX + accessibility review of UI source (TSX, HTML, Razor, Vue, Svelte, Framer) — findings as file:line with WCAG 2.2 / Nielsen H# and a concrete fix. Report-only; does not edit files.
+license: MIT
+metadata:
+  requires: "heuristic-evaluation, wq-accessibility, web-design-guidelines"
+  status: "draft"
 ---
 
 # UX + erişilebilirlik denetimi

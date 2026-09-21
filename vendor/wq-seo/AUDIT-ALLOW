@@ -1,2 +1,6 @@
 # Örnek koddaki açıklama yorumları
 ^SKILL\.md:(58|64|81|137):
+# Tanınmayan alanlar: OpenAI/Perplexity crawler belgeleri (agentic browsing bölümü) — yalnız okuma linki
+^(help\.openai\.com|docs\.perplexity\.ai)$
+# Tanınmayan alan: sitemaps.org protokol belgesi — yalnız okuma linki
+^www\.sitemaps\.org$
