@@ -1,0 +1,3 @@
+# Örnek kod: SRI integrity açıklaması, webpack devtool, HTML yorumları — talimat değil
+^references/SECURITY\.md:(34|95):
+^SKILL\.md:(263|391|395):

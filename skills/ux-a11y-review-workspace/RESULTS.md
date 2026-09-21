@@ -37,8 +37,8 @@ fixture bugs fixed; all six Playwright tests kept green.
 | With skill | **PASS** — 0 violations · 16 compliant · 4 unverifiable (CSS/shell) · 1 n/a; four borderline items rejected with reasons |
 | Without skill | 10 notes, 2 legitimate nits (persistent Turkish errors on non-TC fields; star sentence read half by screen readers) → fixed in fixture |
 
-## Status
-Draft. The fixture no longer discriminates on *finding*; further fixture-driven edits would be overfitting.
+## Skill status: draft
+ The fixture no longer discriminates on *finding*; further fixture-driven edits would be overfitting.
 Next gate: a real, publicly reachable page, run in a session with a browser (step 4 — Tab-through — has not yet executed).
 
 ## Real page — W3C WAI "Before and After Demo" (inaccessible home page), 2026-09-18

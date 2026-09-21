@@ -6,3 +6,4 @@ playground/.lighthouseci/
 *.log
 .DS_Store
 Thumbs.db
+vendor/.audit-status

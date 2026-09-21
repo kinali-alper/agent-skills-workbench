@@ -1,0 +1,8 @@
+# ux-designer — yanlış alarmlar; gerekçeler REVIEW.md
+# Arapça tarih örneğindeki U+200F (RTL işareti); i18n dokümanında doğal
+^references/23-internationalization\.md:196$
+# "password"/"credentials": form/onboarding/hata-metni TASARIM örnekleri (WCAG 3.3.8, UX writing) — kimlik bilgisi değil
+^references/[0-9a-z-]+\.md:[0-9]+:.*([Pp]assword|[Cc]redentials)
+# Örnek HTML/CSS bloklarındaki açıklama yorumları (<!-- ... -->) — talimat değil
+^references/[0-9a-z-]+\.md:[0-9]+:\s*<!--
+^references/[0-9a-z-]+\.md:[0-9]+:.*<!-- (Never use tabindex|Single H1|Prominent|Top-aligned|Left-aligned|Right-aligned|Use for hints|Disappears|Good:|Bad:|Alternative|Consider|- Relative|Specific|Always provide|\.\.\.)

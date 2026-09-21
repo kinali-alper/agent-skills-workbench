@@ -7,8 +7,12 @@ description: Arayüzü denetle — tam UX + erişilebilirlik denetimi (kullanıl
 
 Bir arayüz dosyasını (veya render edilmiş sayfayı) **kullanılabilirlik** (Nielsen H1–H10) ve **erişilebilirlik** (WCAG 2.2 AA) açısından denetler. Çıktı rapordur; dosya düzenlenmez. Otomatik araçların (axe, Lighthouse) kör noktalarına odaklanır: davranış, anlam, etiket kalıcılığı, odak, hedef boyutu, tablo yapısı.
 
+## Ne için kullanılmaz
+Backend / API / iş mantığı incelemesi; görsel estetik ve marka uyumu (→ `visual-design-review`, hazırlanıyor; şimdilik `frontend-design`); tasarım sistemi/token uyumu; performans ve SEO (→ `wq-*`); kod düzeltme (rapor üretir, dosya düzenlemez).
+
 ## Gereksinimler
 Kurulu skill'ler: `heuristic-evaluation` (adım 2), `wq-accessibility` ve `web-design-guidelines` (adım 3 referansı). `heuristic-evaluation` yoksa Nielsen 10 heuristiğini doğrudan uygula (H1 durum görünürlüğü … H10 yardım) ve 0–4 şiddet ver; diğer ikisi yoksa A-listesi tek başına yeter.
+Adım 4 tarayıcı paneli ya da Playwright ister; ikisi de yoksa denetim **statik** kalır ve rapor bunu başlıkta söyler.
 
 ## Hüküm sözlüğü
 Her kontrol maddesi tam olarak **bir** durum alır:
@@ -44,7 +48,7 @@ Aşağıdaki U-listesinin her satırına hüküm ver:
 ✔ Kriter: U1–U8'in her biri için hüküm (aşağıdaki dört durumdan biri).
 
 ### 3. Erişilebilirlik geçişi
-Aşağıdaki A-listesinin her satırına hüküm ver. Kural metni ve kod reçetesi gerektiğinde `~/.claude/skills/wq-accessibility/SKILL.md` ilgili bölümünü oku (skill'i çağırma; 460 satır). Form-UX ayrıntıları (autocomplete, inputmode, placeholder biçimi) için `web-design-guidelines`.
+A-listesi **otomatik araçların kör noktaları + en sık ihlaller**dir (19 kriter); WCAG 2.2 A+AA'nın tamamı (55) değil. Her satırına hüküm ver; sonra kalan 36 kriter için [references/wcag22-aa-sweep.md](references/wcag22-aa-sweep.md) dosyasını oku ve dosyada ilgili olanı bulguya ekle (hüküm zorunlu değil). Kural metni ve kod reçetesi gerektiğinde kurulu `wq-accessibility` skill'inin SKILL.md dosyasını bul ve **yalnız ilgili bölümünü** oku (skill'i çağırma; 460 satır). Form-UX ayrıntıları (autocomplete, inputmode, placeholder biçimi) için `web-design-guidelines`.
 
 | A | Kontrol | WCAG |
 |---|---|---|
@@ -57,7 +61,7 @@ Aşağıdaki A-listesinin her satırına hüküm ver. Kural metni ve kod reçete
 | A7 | Etkileşimli öğe **native** (`button`, `a href`, form denetimi); `div/span` + onClick yerine | 2.1.1 · 4.1.2 |
 | A8 | Yalnız ikon/emoji taşıyan denetimde erişilebilir ad (`aria-label` / gizli metin) | 4.1.2 · 2.5.3 |
 | A9 | Tıklama hedefi ≥ 24×24 CSS px (inline metin linki hariç) | 2.5.8 |
-| A10 | Hareket `prefers-reduced-motion` altında durur; 5 sn'den uzun otomatik hareket durdurulabilir | 2.3.3 · 2.2.2 |
+| A10 | 5 sn'den uzun otomatik hareket durdurulabilir; flaş yok; `prefers-reduced-motion`a saygı (iyi uygulama, 2.3.3 AAA) | 2.2.2 · 2.3.1 |
 | A11 | Veri tablosunda `caption` ve `th scope`; **küçük tablolar (≤3×3) axe'ten kaçar, elle kontrol** | 1.3.1 |
 | A12 | `html lang` doğru; dil değişen parçalarda `lang` | 3.1.1 · 3.1.2 |
 | A13 | Canlı güncellemeler (doğrulama, toast) `aria-live` / `role="status"` ile duyurulur | 4.1.3 |

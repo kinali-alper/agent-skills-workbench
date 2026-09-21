@@ -1,68 +1,77 @@
-# ux-a11y-skills
+# agent-skills-workbench
 
-Audited, evaluated [Claude Code](https://claude.com/claude-code) skills for **UX + accessibility review** —
-with a security intake pipeline and a measurable test bench. Stack-agnostic: the same rules run on React, plain HTML,
-ASP.NET Razor, Vue, Svelte or Framer output.
+Audited, pinned, evaluated [Claude Code](https://claude.com/claude-code) skills — with a security intake pipeline and a
+measurable test bench. Two first-class review skills (one shipping as a draft, one in preparation) and 27 vendored skills
+in six layers, each individually installable.
 
 *Türkçe özet aşağıda.*
 
-## What's here
+## Skills
 
-| Folder | Contents |
-|---|---|
-| `skills/ux-a11y-review/` | Our skill: WCAG 2.2 AA (13 checks) + Nielsen heuristics (8 checks), four-state verdicts, `file:line` findings with a positive fix, mandatory keyboard pass and human TODO. Report-only. Triggers in Turkish (*"arayüzü denetle"*) to avoid colliding with the vendored English-triggered skills. |
-| `skills/ux-a11y-review-workspace/` | Eval results (`RESULTS.md`, `grading.json` per run). |
-| `vendor/` | 27 third-party skills, each pinned to a commit, with upstream `LICENSE` and a `REVIEW.md` security audit record. |
-| `scripts/skill-audit.sh` | 8-point scan for any skill folder: scripts, hooks/`allowed-tools`, dangerous commands, injection phrases, hidden Unicode, external domains, size. Exit code is a gate. |
-| `scripts/install.sh` | Syncs `skills/` + `vendor/` into `~/.claude/skills`. Refuses anything without `REVIEW.md`. |
-| `scripts/publish-check.sh` | Pre-push leak scan (org names, machine paths, e-mails, ID numbers). |
-| `evals/cases/broken-form/` | Test fixture: a Turkish school-registration form with 19 planted defects (13 WCAG + 6 Nielsen) in TSX, HTML and Razor, plus a clean twin as negative control. `expected.md` is the answer key: which tool caught what. |
-| `playground/` | Vite app serving the fixture; Playwright + axe-core + Lighthouse. `npm run test:a11y`. |
-| `docs/` | Standards (WCAG 2.2 / EN 301 549), skill-writing rules, reviewed-but-not-installed sources, history. |
+| Skill | Status | What it does |
+|---|---|---|
+| [`ux-a11y-review`](skills/ux-a11y-review/SKILL.md) | **draft** — 3 eval iterations, 1 real page ([RESULTS](skills/ux-a11y-review-workspace/RESULTS.md)) | UX (Nielsen, 8 checks) + accessibility (WCAG 2.2 blind spots, 13 checks + a 36-criterion A/AA sweep reference) in one report. Four-state verdicts, `file:line` + positive fix, mandatory keyboard pass and human TODO. Report-only. Triggers in Turkish (*"arayüzü denetle"*) to avoid colliding with the English-triggered vendored skills. |
+| `visual-design-review` | planned | Token discipline, hierarchy, AI-cliché detection, copy — findings, not a beauty score. Needs a rendered page. |
 
-## Why
+## Vendored skills — six layers
 
-- Automated tools are not enough. On the fixture, axe caught **4 of 13** WCAG defects and Lighthouse scored the broken page **84/100**.
-  The 9 misses (placeholder-as-label, colour-only error, removed focus ring, `div` button, emoji-only button, 16 px target,
-  no reduced-motion, headerless small table, "click here") are exactly what a review skill must cover.
-- Skills are prompt files and can carry prompt injection. Nothing is installed here without an audit and a written review.
-- "It works" needs evidence. The skill was evaluated with fresh, isolated subagents, with and without the skill, on three
-  stacks and a negative control — see [RESULTS.md](skills/ux-a11y-review-workspace/RESULTS.md). Honest finding: the bare
-  model already finds 18/19; the skill adds completeness, consistency, brevity and the mandatory browser/human steps.
+Full table with upstream, pin, license, audit result and trigger phrases: [`vendor/MANIFEST.md`](vendor/MANIFEST.md) (generated).
+
+| Layer | Skills | Role |
+|---|---|---|
+| 1 Review core | wq-accessibility · web-design-guidelines · heuristic-evaluation | Rule text and process `ux-a11y-review` orchestrates |
+| 2 UX knowledge | ux-designer | 24 reference files (Nielsen, Laws of UX, forms, i18n…) behind conditional pointers |
+| 3 Design direction | frontend-design · design-taste-frontend · high-end-visual-design · minimalist-ui · industrial-brutalist-ui · redesign-existing-projects | *Producing* visual design; input for `visual-design-review` |
+| 4 Motion | motion-design · gsap-* (8) | Motion principles; GSAP only useful in GSAP projects |
+| 5 Web quality | wq-seo · wq-performance · wq-core-web-vitals · wq-best-practices · wq-web-quality-audit | Lighthouse-family audits |
+| 6 Process / skill writing | writing-for-agents · grill-me · to-spec | How this repo's own skills are written |
+
+Every vendored skill is **pinned to the upstream commit whose blob matches ours** (verified by hash, 2026-09-21), carries the
+upstream `LICENSE` (26 MIT, 1 Apache-2.0), and has a `REVIEW.md` security record. Where the audit flags example code as a false
+positive, the exception lives in `AUDIT-ALLOW` with the reason in `REVIEW.md` — so **the audit's exit code is a real gate:
+all 27 return 0, and a planted malicious sample returns 2.**
 
 ## Install
 
 ```bash
-git clone https://github.com/kinali-alper/ux-a11y-skills
-cd ux-a11y-skills
-bash scripts/install.sh          # → ~/.claude/skills (28 skills)
+git clone https://github.com/kinali-alper/agent-skills-workbench
+cd agent-skills-workbench
+bash scripts/install.sh --only ux-a11y-review --only wq-accessibility --only web-design-guidelines --only heuristic-evaluation
+# or everything:  bash scripts/install.sh        (--dry-run to preview; existing folders are backed up, not overwritten)
 ```
-Then in Claude Code: `arayüzü denetle src/pages/Login.tsx` — or invoke `/ux-a11y-review`.
+Then in Claude Code: `arayüzü denetle src/pages/Login.tsx`, or `/ux-a11y-review`.
 
-Requirements for the skill: `heuristic-evaluation`, `wq-accessibility`, `web-design-guidelines` (all vendored here).
-Playground: Node 22, Chrome (Playwright uses `channel: 'chrome'`).
+## Why
 
-## Standards
-WCAG 2.2 Level **AA** (EN 301 549 v4.1.1). WCAG 3.0 is a Working Draft and not referenced.
+- Automated tools are not enough: on the fixture, axe caught **4 of 13** WCAG defects and Lighthouse scored the broken page **84/100**.
+- Skills are prompt files and can carry prompt injection. Nothing is installed here without an audit and a written review ([SECURITY](SECURITY.md)).
+- "It works" needs evidence: fresh isolated subagents, with and without the skill, three stacks, a negative control, one real
+  public page. Honest finding: the bare model already finds 18/19; the skill adds completeness, consistency, brevity and the
+  mandatory browser step — which on the real page produced the severity-4 finding.
 
-## License
-MIT — see [LICENSE](LICENSE). Vendored skills keep their upstream licenses (MIT; frontend-design Apache-2.0) — see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+## Repo layout
+
+| Folder | Contents |
+|---|---|
+| `skills/<name>/` | Our skills; `evals/evals.json` per skill; `<name>-workspace/` holds graded results |
+| `vendor/` | 27 third-party skills + `MANIFEST.md` |
+| `scripts/` | `skill-audit.sh` (8-point scan, gating exit code, `AUDIT-ALLOW` exceptions) · `install.sh` (`--only`, `--dry-run`, backup) · `publish-check.sh` (pre-push leak scan) · `gen-manifest.sh` |
+| `evals/cases/` | Fixtures: a Turkish school-registration form with 19 planted defects in TSX/HTML/Razor + a clean twin |
+| `playground/` | Vite app serving the fixtures; Playwright + axe-core + Lighthouse |
+| `docs/` | Standards, skill-writing rules, reviewed-but-not-installed sources, history |
+
+Standards: WCAG 2.2 Level **AA** (EN 301 549 v4.1.1). License: MIT — see [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ---
 
 ## Türkçe
 
-**Ne:** Erişilebilirlik (WCAG 2.2 AA) ve kullanılabilirlik (Nielsen) denetimi için Claude Code skill'leri; güvenlik denetiminden
-geçmiş 27 üçüncü taraf skill; ve "skill gerçekten çalışıyor mu?" sorusuna sayıyla cevap veren bir test tezgâhı.
-
-**Neden Türkçe tetik:** Kurulu İngilizce skill'ler "accessibility audit" ifadesini paylaşıyor; üçüncüsü aynı kelimeyi kullansaydı
-hangisinin tetikleneceği belirsiz olurdu. `arayüzü denetle`, `erişilebilirlik kontrolü`, `kullanılabilirlik incelemesi` hiçbir
-kurulu skill'le çakışmaz.
+**Ne:** Güvenlik denetiminden geçmiş, kaynak commit'ine sabitlenmiş ve ölçülmüş Claude Code skill'leri için bir **tezgâh**.
+Kendi skill'lerimiz: `ux-a11y-review` (taslak — kullanılabilirlik + erişilebilirlik tek raporda) ve `visual-design-review` (hazırlanıyor —
+tutarlılık, hiyerarşi, klişe, metin; güzellik puanı **vermez**). 27 üçüncü taraf skill altı katmanda; `install.sh --only <ad>` ile tek tek kurulur.
 
 **İlkeler**
-1. Skill'ler yapıdan bağımsızdır; yapıya özgü reçeteler `references/` altında, yalnız gerektiğinde yüklenir.
-2. Hiçbir üçüncü taraf skill denetimsiz kurulmaz: `skill-audit.sh` → SKILL.md okuma → `REVIEW.md` → `install.sh`.
-3. Kanıtsız "iyi" denmez: axe + Lighthouse + klavye/ekran okuyucu; skill testleri taze, izole alt-ajanla.
-4. Skill, kullanıcıları ve arayüz dilini projeden tespit eder; bulamazsa sorar. İçinde proje bilgisi yoktur.
-
-Kurulum ve klasörler için yukarıdaki İngilizce bölüme bakın.
+1. Skill'ler yapıdan ve projeden bağımsızdır; yapıya özgü reçeteler `references/` altında, yalnız gerektiğinde yüklenir. Kullanıcıları ve dili projeden tespit eder, bulamazsa sorar.
+2. Hiçbir üçüncü taraf skill denetimsiz kurulmaz: `skill-audit.sh` → SKILL.md okuma → `REVIEW.md` + upstream `LICENSE` + pin → `install.sh`. Yanlış alarmlar `AUDIT-ALLOW`'da gerekçeli; çıkış kodu gerçek kapı.
+3. Kanıtsız "iyi" denmez: taze izole alt-ajanla skill'li/skill'siz koşu, negatif kontrol, gerçek sayfa.
+4. Neden Türkçe tetik: kurulu İngilizce skill'ler "accessibility audit" ifadesini paylaşıyor; `arayüzü denetle`, `erişilebilirlik kontrolü`, `kullanılabilirlik incelemesi` hiçbiriyle çakışmaz.

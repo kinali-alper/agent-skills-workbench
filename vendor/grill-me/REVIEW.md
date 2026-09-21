@@ -7,7 +7,8 @@
 | Denetim | skill-audit.sh → TEMİZ; SKILL.md elle okundu |
 | Betik / binary | Yok |
 | allowed-tools / hook | Yok |
-| **Karar** | **ONAYLI** |
+| Katman | 6 · süreç / skill yazımı |
+ **ONAYLI** |
 
 ## Notlar
 - Rol: UI/UX değil, **skill yazım / kapsam netleştirme** altyapısı. Bir planı/skill kapsamını soru-cevapla sertleştirmek için.

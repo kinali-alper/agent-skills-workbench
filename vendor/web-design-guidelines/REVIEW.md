@@ -8,7 +8,8 @@
 | Betik / binary | Yok (tek SKILL.md, 39 satır) |
 | allowed-tools / hook | Yok (metadata: author, version, argument-hint) |
 | Harici alanlar | Yok |
-| **Karar** | **ONAYLI** |
+| Katman | 1 · inceleme çekirdeği |
+ **ONAYLI** |
 
 ## Notlar
 - Çalışma şekli: SKILL.md kısa; kuralları çalışma anında vercel.com/design/guidelines'tan çeker (WebFetch). Yani kural listesi **yerelde değil** — çevrimdışı çalışmaz, kaynak değişirse davranış değişir. İzlenecek.

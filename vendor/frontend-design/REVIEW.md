@@ -2,11 +2,12 @@
 
 | Alan | Değer |
 |---|---|
-| Kaynak | anthropics/claude-code · plugins/frontend-design/skills/frontend-design · main (2026-09-18 ile birebir) · **Apache-2.0** (LICENSE.txt yanında) |
-| Alınma | 2026-09-18, kurulu resmi plugin kopyasından; GitHub main ile diff'lendi: aynı |
+| Kaynak | anthropics/claude-code · plugins/frontend-design/skills/frontend-design · **commit dbdd79c** (2026-09-02) · Apache-2.0 |
+| Alınma | 2026-09 (kuruluş öncesi kurulu kopyadan). **Pin 2026-09-21'de blob eşleştirmesiyle bulundu:** SKILL.md'nin git blob hash'i upstream commit dbdd79c ile birebir; upstream HEAD (main 2026-09-18) ile de aynı → drift yok |
 | Denetim | skill-audit.sh → TEMİZ; 71 satır, elle okundu |
 | Betik / hook / allowed-tools | Yok |
-| **Karar** | **ONAYLI** |
+| Katman | 3 · tasarım yönü (üretim) |
+ **ONAYLI** |
 
 ## Notlar
 - Rol: görsel tasarım **duruşu** — konudan çıkan kimlik, iki geçişli süreç (plan → brief'e karşı özdenetim → kod), 5 "AI tasarımı" klişesi listesi, mikrokopi kuralları.

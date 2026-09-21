@@ -8,9 +8,21 @@ overall=0
 # Tasarım metinlerinde normal olan sözcükleri eleyen istisna listesi
 BENIGN='design token|tokens?\b|color token|spacing token|token strategy|token system|--token|tokeniz|overflow: ?hidden|overflow-hidden|aria-hidden|visibility: ?hidden|visually-hidden|sr-only|hidden (state|element|content|menu|field|nav|layer|input|label|text|until|behind|on mobile|by default|skip)|skip-link|silently (fail|ignor|using)|telemetry (ui|interface|&)|tactical telemetry|hidden gems|hidden complexity|auth token|license key|api[_-]?key%|SHOPIFY_API_KEY|type="password"|for="password"|id="password|password-requirements|remembering a password|passwordless|current-password'
 
+# AUDIT-ALLOW: skill klasöründe, satır başına bir ERE deseni (göreli yol veya bulgu metnine karşı).
+# Eşleşen bulgular hükme girmez; REVIEW.md'de gerekçesi yazılı olmalı. Boş/yorum satırları (#) yok sayılır.
+allow_filter() {  # stdin: bulgular (göreli yollu) → stdout: izin listesinde OLMAYANLAR
+  local f="$1"
+  if [ -f "$f" ]; then
+    local pat; pat=$(grep -vE '^\s*(#|$)' "$f" | paste -sd'|' -)
+    if [ -n "$pat" ]; then grep -vE -- "$pat" || true; else cat; fi
+  else cat; fi
+}
+
 scan_one() {
-  local dir="$1"; local crit=0; local warn=0
+  local dir="${1%/}"; local crit=0; local warn=0
   local rel="s|^$dir/||"
+  local ALLOW="$dir/AUDIT-ALLOW"
+  [ -f "$ALLOW" ] && echo "    (AUDIT-ALLOW: $(grep -cvE '^\s*(#|$)' "$ALLOW") istisna)"
   echo "=================================================================="
   echo " $dir"
   echo "=================================================================="
@@ -18,10 +30,10 @@ scan_one() {
 
   echo "--- 1. Dosya envanteri"
   local total; total=$(find "$dir" -type f -not -path "*/.git/*" | wc -l)
-  local nonmd; nonmd=$(find "$dir" -type f -not -path "*/.git/*" ! -iname "*.md" ! -iname "*.txt" ! -iname "LICENSE*" ! -iname "*.json" ! -iname "*.yaml" ! -iname "*.yml" ! -iname "*.png" ! -iname "*.jpg" ! -iname "*.svg")
+  local nonmd; nonmd=$(find "$dir" -type f -not -path "*/.git/*" ! -iname "*.md" ! -iname "*.txt" ! -iname "LICENSE*" ! -iname "*.json" ! -iname "*.yaml" ! -iname "*.yml" ! -iname "*.png" ! -iname "*.jpg" ! -iname "*.svg" ! -name AUDIT-ALLOW | sed "$rel" | allow_filter "$ALLOW")
   echo "    toplam dosya: $total"
   if [ -n "$nonmd" ]; then
-    echo "${RED}    [KRİTİK] Markdown dışı çalıştırılabilir/betik dosyalar — elle incele:${NC}"; echo "$nonmd" | sed "$rel" | sed 's/^/      /'; crit=1
+    echo "${RED}    [KRİTİK] Markdown dışı çalıştırılabilir/betik dosyalar — elle incele:${NC}"; echo "$nonmd" | sed 's/^/      /'; crit=1
   else echo "${GRN}    betik/binary yok${NC}"; fi
 
   echo "--- 2. Frontmatter (allowed-tools, hooks, metadata)"
@@ -32,31 +44,32 @@ scan_one() {
   else echo "${GRN}    yalnız name/description${NC}"; fi
 
   echo "--- 3. Tehlikeli komut kalıpları"
-  local danger; danger=$(grep -rniE "\bcurl\b|\bwget\b|Invoke-WebRequest|Invoke-Expression|\biex\b|\beval\(|\bexec\(|base64|\bnc -|\brm -rf|chmod \+x|\bsudo\b|\.env\b|api[_-]?key|secret|password|credential|\bssh\b|\btoken\b" --include="*.md" "$dir" 2>/dev/null | grep -viE "$BENIGN")
-  if [ -n "$danger" ]; then echo "${YEL}    [UYARI] İncele:${NC}"; echo "$danger" | sed "$rel" | cut -c1-200 | sed 's/^/      /'; warn=1
+  local danger; danger=$(grep -rniE "\bcurl\b|\bwget\b|Invoke-WebRequest|Invoke-Expression|\biex\b|\beval\(|\bexec\(|base64|\bnc -|\brm -rf|chmod \+x|\bsudo\b|\.env\b|api[_-]?key|secret|password|credential|\bssh\b|\btoken\b" --include="*.md" "$dir" 2>/dev/null | grep -viE "$BENIGN" | sed "$rel" | allow_filter "$ALLOW")
+  if [ -n "$danger" ]; then echo "${YEL}    [UYARI] İncele:${NC}"; echo "$danger" | cut -c1-200 | sed 's/^/      /'; warn=1
   else echo "${GRN}    yok${NC}"; fi
 
   echo "--- 4. Prompt injection ifadeleri"
-  local inj; inj=$(grep -rniE "ignore (all |any )?(previous|prior|above|earlier)|disregard (the |your )?(instructions|rules|system)|you are now|new system prompt|do not (tell|inform|show|mention) (the |to )?user|without (telling|informing|asking|notifying) the user|\bsecretly\b|exfiltrat|send (this|the|all|your) .{0,40}(to|via) (http|url|endpoint|server|email)|upload .{0,30}to http|report back to|analytics endpoint|phone home|run this (script|command) first|before (anything|you begin), (run|execute|fetch)" --include="*.md" "$dir" 2>/dev/null | grep -viE "$BENIGN")
-  if [ -n "$inj" ]; then echo "${RED}    [KRİTİK] İncele:${NC}"; echo "$inj" | sed "$rel" | cut -c1-200 | sed 's/^/      /'; crit=1
+  local inj; inj=$(grep -rniE "ignore (all |any )?(previous|prior|above|earlier)|disregard (the |your )?(instructions|rules|system)|you are now|new system prompt|do not (tell|inform|show|mention) (the |to )?user|without (telling|informing|asking|notifying) the user|\bsecretly\b|exfiltrat|send (this|the|all|your) .{0,40}(to|via) (http|url|endpoint|server|email)|upload .{0,30}to http|report back to|analytics endpoint|phone home|run this (script|command) first|before (anything|you begin), (run|execute|fetch)" --include="*.md" "$dir" 2>/dev/null | grep -viE "$BENIGN" | sed "$rel" | allow_filter "$ALLOW")
+  if [ -n "$inj" ]; then echo "${RED}    [KRİTİK] İncele:${NC}"; echo "$inj" | cut -c1-200 | sed 's/^/      /'; crit=1
   else echo "${GRN}    yok${NC}"; fi
 
   echo "--- 5. Gizli HTML yorumları"
-  local cm; cm=$(grep -rn "<!--" --include="*.md" "$dir" 2>/dev/null | grep -viE "TODO|mock|example|placeholder|CONTENT HERE|position: fixed|❌|✅|<!-- [a-zA-Z ()—-]{2,60} -->")
-  if [ -n "$cm" ]; then echo "${YEL}    [UYARI] Örnek kod dışı yorum:${NC}"; echo "$cm" | sed "$rel" | cut -c1-200 | sed 's/^/      /'; warn=1
+  local cm; cm=$(grep -rn "<!--" --include="*.md" "$dir" 2>/dev/null | grep -viE "TODO|mock|example|placeholder|CONTENT HERE|position: fixed|❌|✅|<!-- [a-zA-Z ()—-]{2,60} -->" | sed "$rel" | allow_filter "$ALLOW")
+  if [ -n "$cm" ]; then echo "${YEL}    [UYARI] Örnek kod dışı yorum:${NC}"; echo "$cm" | cut -c1-200 | sed 's/^/      /'; warn=1
   else echo "${GRN}    yok / yalnız örnek kod içinde${NC}"; fi
 
   echo "--- 6. Görünmez / yön-değiştiren Unicode"
-  local uni; uni=$(python - "$dir" <<'PY'
+  local uni; uni=$(python - "$dir" <<'PY' | sed "$rel" | allow_filter "$ALLOW"
 import sys,pathlib,re
 bad=re.compile('[​-‏ -‮⁠-⁤﻿]|[\U000e0000-\U000e007f]')
-for p in pathlib.Path(sys.argv[1]).rglob('*.md'):
+root=pathlib.Path(sys.argv[1])
+for p in root.rglob('*.md'):
     if '.git' in p.parts: continue
     for i,l in enumerate(p.read_text(encoding='utf-8',errors='replace').splitlines(),1):
-        if bad.search(l): print(f"{p}:{i}")
+        if bad.search(l): print(f"{p.relative_to(root).as_posix()}:{i}")
 PY
 )
-  if [ -n "$uni" ]; then echo "${RED}    [KRİTİK] Gizli karakter:${NC}"; echo "$uni" | sed "$rel" | sed 's/^/      /'; crit=1
+  if [ -n "$uni" ]; then echo "${RED}    [KRİTİK] Gizli karakter:${NC}"; echo "$uni" | sed 's/^/      /'; crit=1
   else echo "${GRN}    yok${NC}"; fi
 
   echo "--- 7. Harici alan adları"

@@ -8,7 +8,8 @@
 | Betik | `scripts/analyze.sh` — ELLE OKUNDU: salt-okunur (grep/find/jq), ağ yok, yazma yok, set -euo pipefail. Bağımlılık: **jq** (bu makinede yok → kurulmalı ya da betik kullanılmaz; SKILL.md betik olmadan da çalışır) |
 | allowed-tools / hook | Yok (metadata: author, version) |
 | Harici alanlar | web.dev, developer.chrome.com, MDN, w3.org gibi tanınmış kaynaklar |
-| **Karar** | **ONAYLI** |
+| Katman | 5 · web kalitesi |
+ **ONAYLI** |
 
 ## Notlar
 - Skill adı çakışma riskine karşı `wq-` öneki ile kuruldu (frontmatter `name` alanı orijinal kaldı).
