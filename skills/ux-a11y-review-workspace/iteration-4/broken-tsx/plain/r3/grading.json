@@ -1,0 +1,31 @@
+{
+  "run": "broken-tsx/plain/r3",
+  "condition": "plain",
+  "rep": 3,
+  "model": "claude-opus-5",
+  "date": "2026-09-21",
+  "tokens": 93982,
+  "fixture_defects_found": 19,
+  "of": 19,
+  "missed": [],
+  "verdicts_21": 21,
+  "report_lines": 172,
+  "manual_check": "U2 kaçırması without×3'te doğrulandı (iptal/vazgeç/cancel 0 eşleşme); plain/with U2 gerçek bulgu (:17/:19). Uydurma: 'form yok' hepsinde gerçek (dosyada <form> yok); KVKK notu without/plain'de kapsam dışı ama yanlış değil.",
+  "expectations": [
+    {
+      "text": "F1–F19 ≥16 bulundu",
+      "passed": true,
+      "evidence": "19/19"
+    },
+    {
+      "text": "21 hüküm",
+      "passed": true,
+      "evidence": "21"
+    },
+    {
+      "text": "Uydurma bulgu yok",
+      "passed": true,
+      "evidence": "elle kontrol"
+    }
+  ]
+}

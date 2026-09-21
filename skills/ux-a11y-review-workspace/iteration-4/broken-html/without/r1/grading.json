@@ -1,0 +1,30 @@
+{
+  "run": "broken-html/without/r1",
+  "condition": "without",
+  "rep": 1,
+  "model": "claude-opus-5",
+  "date": "2026-09-21",
+  "tokens": 80060,
+  "report_lines": 199,
+  "manual_check": "U2 kaçtı (elle doğrulandı)",
+  "fixture_defects_found": 18,
+  "of": 19,
+  "verdicts_21": 0,
+  "expectations": [
+    {
+      "text": "F1–F19 ≥16",
+      "passed": true,
+      "evidence": "18/19"
+    },
+    {
+      "text": "21 hüküm",
+      "passed": true,
+      "evidence": "istenmedi"
+    },
+    {
+      "text": "Uydurma yok",
+      "passed": true,
+      "evidence": "elle"
+    }
+  ]
+}

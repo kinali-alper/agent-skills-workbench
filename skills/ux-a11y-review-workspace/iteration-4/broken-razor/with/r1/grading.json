@@ -1,0 +1,30 @@
+{
+  "run": "broken-razor/with/r1",
+  "condition": "with",
+  "rep": 1,
+  "model": "claude-opus-5",
+  "date": "2026-09-21",
+  "tokens": 93933,
+  "report_lines": 76,
+  "manual_check": "ön-tarama F7'yi kaçırdı; elle: select A4 :15 altında kapsanmış → 19/19",
+  "fixture_defects_found": 19,
+  "of": 19,
+  "verdicts_21": 21,
+  "expectations": [
+    {
+      "text": "F1–F19 ≥16",
+      "passed": true,
+      "evidence": "19/19"
+    },
+    {
+      "text": "21 hüküm",
+      "passed": true,
+      "evidence": "21"
+    },
+    {
+      "text": "Uydurma yok",
+      "passed": true,
+      "evidence": "elle"
+    }
+  ]
+}

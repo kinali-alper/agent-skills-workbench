@@ -1,0 +1,23 @@
+{
+  "run": "fixed-negative-control/without/r1",
+  "condition": "without",
+  "rep": 1,
+  "model": "claude-opus-5",
+  "date": "2026-09-21",
+  "tokens": 76611,
+  "report_lines": 113,
+  "manual_check": "18 not; 2'si 'yüksek' dediği tasarım tercihi (başarı mesajı ifadesi, focus sırası); ihlal kavramı yok",
+  "violations": null,
+  "expectations": [
+    {
+      "text": "A/U hiçbiri ihlal değil",
+      "passed": false,
+      "evidence": "18 not; 2'si 'yüksek' dediği tasarım tercihi (başarı mesajı ifadesi, focus sırası); ihlal kavramı yok"
+    },
+    {
+      "text": "≤2 bulgu, şiddet ≤1",
+      "passed": false,
+      "evidence": "18 not; 2'si 'yüksek' dediği tasarım tercihi (başarı mesajı ifadesi, focus sırası); ihlal kavramı yok"
+    }
+  ]
+}

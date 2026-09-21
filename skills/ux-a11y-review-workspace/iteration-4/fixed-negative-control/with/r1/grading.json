@@ -1,0 +1,23 @@
+{
+  "run": "fixed-negative-control/with/r1",
+  "condition": "with",
+  "rep": 1,
+  "model": "claude-opus-5",
+  "date": "2026-09-21",
+  "tokens": 79746,
+  "report_lines": 38,
+  "manual_check": "0 ihlal · 15 uygun · 1 uygulanamaz · 5 doğrulanamaz; 3 şiddet-1 not",
+  "violations": 0,
+  "expectations": [
+    {
+      "text": "A/U hiçbiri ihlal değil",
+      "passed": true,
+      "evidence": "0 ihlal · 15 uygun · 1 uygulanamaz · 5 doğrulanamaz; 3 şiddet-1 not"
+    },
+    {
+      "text": "≤2 bulgu, şiddet ≤1",
+      "passed": true,
+      "evidence": "0 ihlal · 15 uygun · 1 uygulanamaz · 5 doğrulanamaz; 3 şiddet-1 not"
+    }
+  ]
+}

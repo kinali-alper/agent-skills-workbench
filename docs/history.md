@@ -35,3 +35,9 @@
   RESULTS.md gained a Limitations block (n=1, same-U2×3, inline grading, well-known real page, model-relative value,
   iteration-4 owed). `.github/workflows/gate.yml`: audit 27+1 → 0, corpus, strict report, integrity, manifest freshness,
   leak scan, install smoke test. Declined as vision: TS CLI, sandbox, registry, dashboard, SARIF, semantic classifier.
+- **2026-09-21 (night)** — iteration-4: 20 fresh isolated subagent runs in three conditions (`without` / `plain` = tables
+  only / `with` = full skill); TSX and clean control replicated ×3. Result: `without` 18/19 on every stack, `plain` and
+  `with` 19/19 everywhere, zero variance; clean control 0 violations in 4/4 checklist runs; `with` reports 2–4× shorter.
+  Decomposition: finding power = checklist content; mechanism = brevity, severity, completeness, sweep, browser/TODO.
+  W3C regression with the widened rules: 15 → 17/19 (1.4.1 colour-only links 8/8, no skip link measured in-browser; focus
+  trap reproduced). Decision: **no skill edit** — fixture saturated. Raw it-4 reports published after leak scan.
