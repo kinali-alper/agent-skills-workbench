@@ -1,0 +1,1432 @@
+{
+  "skill_name": "ux-a11y-review",
+  "description": "Arayüzü denetle — tam UX + erişilebilirlik denetimi (kullanılabilirlik incelemesi ve erişilebilirlik kontrolü tek raporda). Use for a full UX + accessibility review of UI source (TSX, HTML, Razor, Vue, Svelte, Framer) — findings as file:line with WCAG 2.2 / Nielsen H# and a concrete fix. Report-only; does not edit files.",
+  "model": "claude-opus-5",
+  "date": "2026-09-21",
+  "max_turns": 6,
+  "runs_per_query": 3,
+  "threshold": 0.5,
+  "results": [
+    {
+      "query": "Arayüzü denetle: src/pages/RegisterForm.tsx",
+      "tag": "TR·keyword·path",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": false,
+      "any_clean_rate": 0.0,
+      "any_raw_rate": 0.6666666666666666,
+      "valid_runs": 1,
+      "pass_any": false,
+      "ended": [
+        "error_max_turns",
+        "error_max_turns",
+        "success"
+      ],
+      "first_tools": [
+        "Bash",
+        "Bash",
+        "Read"
+      ],
+      "skill_turns": [
+        7,
+        6,
+        null
+      ],
+      "skills_called": [
+        [
+          "<TEST-SKILL>"
+        ],
+        [
+          "<TEST-SKILL>"
+        ],
+        [
+          "web-design-guidelines"
+        ]
+      ],
+      "tools": [
+        [
+          "Bash",
+          "Grep",
+          "Glob",
+          "Read",
+          "Read",
+          "Read",
+          "Skill",
+          "Read",
+          "Read"
+        ],
+        [
+          "Bash",
+          "Grep",
+          "Bash",
+          "Read",
+          "Bash",
+          "Skill",
+          "Read",
+          "Read",
+          "Read",
+          "Grep"
+        ],
+        [
+          "Read",
+          "Skill",
+          "ToolSearch",
+          "Bash",
+          "WebFetch",
+          "Read",
+          "Read",
+          "Bash"
+        ]
+      ],
+      "self_read": 2,
+      "timeouts": 0,
+      "cost_usd": 1.8306
+    },
+    {
+      "query": "src/pages/RegisterForm.tsx dosyasını erişilebilirlik ve kullanılabilirlik açısından denetle; bulguları satır numarasıyla, WCAG 2.2 ve Nielsen referansıyla raporla. Kod değiştirme.",
+      "tag": "TR·intent·path",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": false,
+      "any_clean_rate": 1.0,
+      "any_raw_rate": 1.0,
+      "valid_runs": 2,
+      "pass_any": true,
+      "ended": [
+        "error_max_turns",
+        "success",
+        "success"
+      ],
+      "first_tools": [
+        "Glob",
+        "Glob",
+        "Read"
+      ],
+      "skill_turns": [
+        4,
+        3,
+        2
+      ],
+      "skills_called": [
+        [
+          "<TEST-SKILL>"
+        ],
+        [
+          "<TEST-SKILL>"
+        ],
+        [
+          "<TEST-SKILL>"
+        ]
+      ],
+      "tools": [
+        [
+          "Glob",
+          "Glob",
+          "Read",
+          "Skill",
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Read"
+        ],
+        [
+          "Glob",
+          "Read",
+          "Skill",
+          "Bash",
+          "Read"
+        ],
+        [
+          "Read",
+          "Skill",
+          "Glob",
+          "Glob",
+          "Read"
+        ]
+      ],
+      "self_read": 1,
+      "timeouts": 0,
+      "cost_usd": 1.6956
+    },
+    {
+      "query": "Kayıt formumuz WCAG 2.2 AA'ya uyuyor mu? Uymayan yerleri ve nasıl düzeltileceğini rapor et, dosyaya dokunma.",
+      "tag": "TR·intent·nopath",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": false,
+      "any_clean_rate": 0.0,
+      "any_raw_rate": 1.0,
+      "valid_runs": 0,
+      "pass_any": false,
+      "ended": [
+        "error_max_turns",
+        "success",
+        "success"
+      ],
+      "first_tools": [
+        "Bash",
+        "Bash",
+        "Bash"
+      ],
+      "skill_turns": [
+        5,
+        5,
+        5
+      ],
+      "skills_called": [
+        [
+          "<TEST-SKILL>"
+        ],
+        [
+          "<TEST-SKILL>"
+        ],
+        [
+          "<TEST-SKILL>"
+        ]
+      ],
+      "tools": [
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Skill",
+          "Read",
+          "Read"
+        ],
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Skill",
+          "Read",
+          "Read"
+        ],
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Skill",
+          "Read",
+          "Read"
+        ]
+      ],
+      "self_read": 3,
+      "timeouts": 0,
+      "cost_usd": 1.1017
+    },
+    {
+      "query": "Bu formu klavyeyle kullanmak mümkün mü, ekran okuyucu etiketleri doğru mu, hata mesajları anlaşılır mı — bir UX/erişilebilirlik incelemesi istiyorum.",
+      "tag": "TR·intent·nopath",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": false,
+      "any_clean_rate": 0.0,
+      "any_raw_rate": 1.0,
+      "valid_runs": 0,
+      "pass_any": false,
+      "ended": [
+        "success",
+        "success",
+        "success"
+      ],
+      "first_tools": [
+        "Bash",
+        "Bash",
+        "Bash"
+      ],
+      "skill_turns": [
+        2,
+        8,
+        5
+      ],
+      "skills_called": [
+        [
+          "<TEST-SKILL>"
+        ],
+        [
+          "<TEST-SKILL>"
+        ],
+        [
+          "<TEST-SKILL>"
+        ]
+      ],
+      "tools": [
+        [
+          "Bash",
+          "Skill",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Read"
+        ],
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Skill",
+          "Read"
+        ],
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Skill",
+          "Read",
+          "Read",
+          "Read",
+          "Read"
+        ]
+      ],
+      "self_read": 3,
+      "timeouts": 0,
+      "cost_usd": 1.5009
+    },
+    {
+      "query": "axe temiz çıktı ama kullanıcılar formda takılıyor. İnsan gözüyle bir kullanılabilirlik ve erişilebilirlik denetimi yap, otomatik araçların kaçırdıklarını bul.",
+      "tag": "TR·blindspot·nopath",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": false,
+      "any_clean_rate": 0.0,
+      "any_raw_rate": 1.0,
+      "valid_runs": 0,
+      "pass_any": false,
+      "ended": [
+        "error_max_turns",
+        "success",
+        "timeout"
+      ],
+      "first_tools": [
+        "Bash",
+        "Bash",
+        "Bash"
+      ],
+      "skill_turns": [
+        3,
+        5,
+        8
+      ],
+      "skills_called": [
+        [
+          "<TEST-SKILL>"
+        ],
+        [
+          "<TEST-SKILL>"
+        ],
+        [
+          "<TEST-SKILL>"
+        ]
+      ],
+      "tools": [
+        [
+          "Bash",
+          "Bash",
+          "Skill",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Bash"
+        ],
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Skill",
+          "Read",
+          "Read",
+          "Read",
+          "Read"
+        ],
+        [
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Skill",
+          "Glob",
+          "Grep"
+        ]
+      ],
+      "self_read": 3,
+      "timeouts": 1,
+      "cost_usd": 0.8828
+    },
+    {
+      "query": "Tasarım ekibi RegisterForm ekranının kullanılabilirliğini sorguluyor. Nielsen heuristikleriyle şiddet dereceli bir inceleme raporu çıkarır mısın?",
+      "tag": "TR·nielsen·nopath",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": false,
+      "any_clean_rate": 0.0,
+      "any_raw_rate": 0.0,
+      "valid_runs": 3,
+      "pass_any": false,
+      "ended": [
+        "success",
+        "success",
+        "success"
+      ],
+      "first_tools": [
+        "Glob",
+        "Glob",
+        "Glob"
+      ],
+      "skill_turns": [
+        null,
+        null,
+        null
+      ],
+      "skills_called": [
+        [
+          "heuristic-evaluation"
+        ],
+        [
+          "heuristic-evaluation"
+        ],
+        [
+          "heuristic-evaluation"
+        ]
+      ],
+      "tools": [
+        [
+          "Glob",
+          "Glob",
+          "Read",
+          "Skill",
+          "Glob",
+          "Read"
+        ],
+        [
+          "Glob",
+          "Skill",
+          "Read",
+          "Glob",
+          "Glob",
+          "Read"
+        ],
+        [
+          "Glob",
+          "Read",
+          "Skill",
+          "Bash",
+          "Grep",
+          "Read",
+          "Read",
+          "Read"
+        ]
+      ],
+      "self_read": 0,
+      "timeouts": 0,
+      "cost_usd": 1.1747
+    },
+    {
+      "query": "Do a full UX and accessibility review of src/pages/RegisterForm.tsx — findings with line numbers, WCAG 2.2 and Nielsen references, concrete fixes. Report only, don't edit.",
+      "tag": "EN·intent·path",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": false,
+      "any_clean_rate": 0.6666666666666666,
+      "any_raw_rate": 0.6666666666666666,
+      "valid_runs": 3,
+      "pass_any": true,
+      "ended": [
+        "error_max_turns",
+        "error_max_turns",
+        "success"
+      ],
+      "first_tools": [
+        "Glob",
+        "Glob",
+        "Glob"
+      ],
+      "skill_turns": [
+        3,
+        null,
+        6
+      ],
+      "skills_called": [
+        [
+          "<TEST-SKILL>"
+        ],
+        [
+          "wq-accessibility",
+          "heuristic-evaluation"
+        ],
+        [
+          "<TEST-SKILL>"
+        ]
+      ],
+      "tools": [
+        [
+          "Glob",
+          "Read",
+          "Skill",
+          "Grep",
+          "Glob",
+          "Read",
+          "Glob"
+        ],
+        [
+          "Glob",
+          "Read",
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Skill",
+          "Skill"
+        ],
+        [
+          "Glob",
+          "Read",
+          "Grep",
+          "Glob",
+          "Read",
+          "Skill"
+        ]
+      ],
+      "self_read": 0,
+      "timeouts": 0,
+      "cost_usd": 1.0042
+    },
+    {
+      "query": "Before we ship the registration page, audit it for accessibility and usability problems and give me a prioritized findings report.",
+      "tag": "EN·intent·nopath",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": false,
+      "any_clean_rate": 0.0,
+      "any_raw_rate": 1.0,
+      "valid_runs": 0,
+      "pass_any": false,
+      "ended": [
+        "error_max_turns",
+        "success",
+        "success"
+      ],
+      "first_tools": [
+        "Bash",
+        "Bash",
+        "Bash"
+      ],
+      "skill_turns": [
+        5,
+        5,
+        6
+      ],
+      "skills_called": [
+        [
+          "<TEST-SKILL>"
+        ],
+        [
+          "<TEST-SKILL>"
+        ],
+        [
+          "<TEST-SKILL>"
+        ]
+      ],
+      "tools": [
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Skill",
+          "Read",
+          "Read",
+          "Read",
+          "Read"
+        ],
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Skill",
+          "Read",
+          "Read"
+        ],
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Skill",
+          "Read",
+          "Read",
+          "Read"
+        ]
+      ],
+      "self_read": 3,
+      "timeouts": 0,
+      "cost_usd": 1.1731
+    },
+    {
+      "query": "Review the registration form markup for a11y issues and heuristic violations (labels, focus, error messages, target sizes). I only want the report.",
+      "tag": "EN·detail·nopath",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": false,
+      "any_clean_rate": 0.0,
+      "any_raw_rate": 1.0,
+      "valid_runs": 0,
+      "pass_any": false,
+      "ended": [
+        "error_max_turns",
+        "success",
+        "success"
+      ],
+      "first_tools": [
+        "Bash",
+        "Glob",
+        "Bash"
+      ],
+      "skill_turns": [
+        7,
+        4,
+        4
+      ],
+      "skills_called": [
+        [
+          "<TEST-SKILL>"
+        ],
+        [
+          "<TEST-SKILL>"
+        ],
+        [
+          "<TEST-SKILL>"
+        ]
+      ],
+      "tools": [
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Bash",
+          "Read",
+          "Skill",
+          "Read"
+        ],
+        [
+          "Glob",
+          "Read",
+          "Read",
+          "Skill",
+          "Read"
+        ],
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Skill",
+          "Read",
+          "Read",
+          "Read",
+          "Read"
+        ]
+      ],
+      "self_read": 3,
+      "timeouts": 0,
+      "cost_usd": 1.1531
+    },
+    {
+      "query": "Views/Account/Register.cshtml için UX + erişilebilirlik denetimi yap; Razor tarafında hata özetinin ve doğrulama mesajlarının erişilebilir olup olmadığını da değerlendir.",
+      "tag": "TR·razor·path",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": false,
+      "any_clean_rate": 1.0,
+      "any_raw_rate": 1.0,
+      "valid_runs": 2,
+      "pass_any": true,
+      "ended": [
+        "error_max_turns",
+        "error_max_turns",
+        "error_max_turns"
+      ],
+      "first_tools": [
+        "Glob",
+        "Bash",
+        "Glob"
+      ],
+      "skill_turns": [
+        8,
+        10,
+        6
+      ],
+      "skills_called": [
+        [
+          "<TEST-SKILL>"
+        ],
+        [
+          "<TEST-SKILL>"
+        ],
+        [
+          "<TEST-SKILL>"
+        ]
+      ],
+      "tools": [
+        [
+          "Glob",
+          "Glob",
+          "PowerShell",
+          "PowerShell",
+          "Read",
+          "Read",
+          "Read",
+          "Skill",
+          "Read",
+          "Read"
+        ],
+        [
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Bash",
+          "Read",
+          "Read",
+          "Bash",
+          "AskUserQuestion",
+          "Skill"
+        ],
+        [
+          "Glob",
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Skill",
+          "Read",
+          "Read"
+        ]
+      ],
+      "self_read": 1,
+      "timeouts": 0,
+      "cost_usd": 0.9025
+    },
+    {
+      "query": "src/pages/RegisterForm.tsx dosyasındaki erişilebilirlik hatalarını düzelt: eksik label'ları ekle, aria-invalid ve aria-describedby bağla, kontrastı artır.",
+      "tag": "TR·edit→wq-accessibility",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": true,
+      "any_clean_rate": 0.0,
+      "any_raw_rate": 0.0,
+      "valid_runs": 0,
+      "pass_any": true,
+      "ended": [
+        "error_max_turns",
+        "error_max_turns",
+        "error_max_turns"
+      ],
+      "first_tools": [
+        "Read",
+        "Read",
+        "Read"
+      ],
+      "skill_turns": [
+        null,
+        null,
+        null
+      ],
+      "skills_called": [
+        [
+          "wq-accessibility"
+        ],
+        [
+          "wq-accessibility"
+        ],
+        [
+          "wq-accessibility"
+        ]
+      ],
+      "tools": [
+        [
+          "Read",
+          "Skill",
+          "Bash",
+          "Bash",
+          "Read",
+          "Write"
+        ],
+        [
+          "Read",
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Skill",
+          "Read",
+          "Read",
+          "Write"
+        ],
+        [
+          "Read",
+          "Skill",
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Write",
+          "ToolSearch"
+        ]
+      ],
+      "self_read": 3,
+      "timeouts": 0,
+      "cost_usd": 1.836
+    },
+    {
+      "query": "Add aria-labels to every icon-only button in src/pages/RegisterForm.tsx and make the focus ring visible.",
+      "tag": "EN·edit→wq-accessibility",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": true,
+      "any_clean_rate": 0.0,
+      "any_raw_rate": 0.0,
+      "valid_runs": 2,
+      "pass_any": true,
+      "ended": [
+        "error_max_turns",
+        "error_max_turns",
+        "error_max_turns"
+      ],
+      "first_tools": [
+        "Read",
+        "Read",
+        "Read"
+      ],
+      "skill_turns": [
+        null,
+        null,
+        null
+      ],
+      "skills_called": [
+        [],
+        [],
+        []
+      ],
+      "tools": [
+        [
+          "Read",
+          "Bash",
+          "Grep",
+          "Glob",
+          "Read",
+          "Read",
+          "Read",
+          "ToolSearch"
+        ],
+        [
+          "Read",
+          "Bash",
+          "Grep",
+          "Bash",
+          "Read",
+          "Read",
+          "ToolSearch",
+          "Bash"
+        ],
+        [
+          "Read",
+          "Glob",
+          "Read",
+          "Read",
+          "Bash",
+          "Read",
+          "ToolSearch"
+        ]
+      ],
+      "self_read": 1,
+      "timeouts": 0,
+      "cost_usd": 0.8946
+    },
+    {
+      "query": "Sitenin Lighthouse performans skoru 61, LCP 4.2 sn. Nasıl hızlandırırız?",
+      "tag": "TR·perf→wq-performance",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": true,
+      "any_clean_rate": 0.0,
+      "any_raw_rate": 0.0,
+      "valid_runs": 3,
+      "pass_any": true,
+      "ended": [
+        "success",
+        "success",
+        "success"
+      ],
+      "first_tools": [
+        "Bash",
+        "Bash",
+        "Bash"
+      ],
+      "skill_turns": [
+        null,
+        null,
+        null
+      ],
+      "skills_called": [
+        [],
+        [],
+        [
+          "wq-core-web-vitals"
+        ]
+      ],
+      "tools": [
+        [
+          "Bash",
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Bash",
+          "Bash"
+        ],
+        [
+          "Bash",
+          "Read",
+          "Read",
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Bash",
+          "AskUserQuestion"
+        ],
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Skill",
+          "Bash",
+          "ToolSearch"
+        ]
+      ],
+      "self_read": 0,
+      "timeouts": 0,
+      "cost_usd": 1.323
+    },
+    {
+      "query": "Kayıt sayfasının SEO'sunu kontrol et: title, meta description, canonical, Open Graph etiketleri.",
+      "tag": "TR·seo→wq-seo",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": true,
+      "any_clean_rate": 0.0,
+      "any_raw_rate": 0.0,
+      "valid_runs": 2,
+      "pass_any": true,
+      "ended": [
+        "error_max_turns",
+        "success",
+        "error_max_turns"
+      ],
+      "first_tools": [
+        "Bash",
+        "Bash",
+        "Bash"
+      ],
+      "skill_turns": [
+        null,
+        null,
+        null
+      ],
+      "skills_called": [
+        [
+          "wq-seo"
+        ],
+        [
+          "wq-seo"
+        ],
+        [
+          "wq-seo"
+        ]
+      ],
+      "tools": [
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Skill",
+          "Grep",
+          "Bash"
+        ],
+        [
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Bash",
+          "Skill",
+          "Grep",
+          "Read"
+        ],
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Skill",
+          "Bash",
+          "Grep",
+          "Glob",
+          "Glob",
+          "Read"
+        ]
+      ],
+      "self_read": 1,
+      "timeouts": 0,
+      "cost_usd": 0.9825
+    },
+    {
+      "query": "Bu kayıt formu çok sıradan görünüyor; daha modern, daha şık bir görsel tasarım öner ve uygula.",
+      "tag": "TR·visual→design skills",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": true,
+      "any_clean_rate": 0.0,
+      "any_raw_rate": 0.0,
+      "valid_runs": 0,
+      "pass_any": true,
+      "ended": [
+        "error_max_turns",
+        "error_max_turns",
+        "error_max_turns"
+      ],
+      "first_tools": [
+        "Bash",
+        "Bash",
+        "Bash"
+      ],
+      "skill_turns": [
+        null,
+        null,
+        null
+      ],
+      "skills_called": [
+        [
+          "redesign-existing-projects"
+        ],
+        [
+          "redesign-existing-projects"
+        ],
+        [
+          "frontend-design"
+        ]
+      ],
+      "tools": [
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Skill",
+          "Bash"
+        ],
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Skill",
+          "Read",
+          "Read",
+          "Read",
+          "Write"
+        ],
+        [
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Bash",
+          "Read",
+          "Skill",
+          "AskUserQuestion"
+        ]
+      ],
+      "self_read": 3,
+      "timeouts": 0,
+      "cost_usd": 1.2254
+    },
+    {
+      "query": "Nielsen'in 10 kullanılabilirlik heuristiği nedir? Her birini bir cümleyle açıkla.",
+      "tag": "TR·knowledge",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": true,
+      "any_clean_rate": 0.0,
+      "any_raw_rate": 0.0,
+      "valid_runs": 3,
+      "pass_any": true,
+      "ended": [
+        "success",
+        "success",
+        "success"
+      ],
+      "first_tools": [
+        null,
+        null,
+        null
+      ],
+      "skill_turns": [
+        null,
+        null,
+        null
+      ],
+      "skills_called": [
+        [],
+        [],
+        []
+      ],
+      "tools": [
+        [],
+        [],
+        []
+      ],
+      "self_read": 0,
+      "timeouts": 0,
+      "cost_usd": 0.1819
+    },
+    {
+      "query": "What exactly does WCAG 2.2 success criterion 2.5.8 Target Size (Minimum) require, and what are its exceptions?",
+      "tag": "EN·knowledge",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": true,
+      "any_clean_rate": 0.0,
+      "any_raw_rate": 0.0,
+      "valid_runs": 3,
+      "pass_any": true,
+      "ended": [
+        "success",
+        "success",
+        "success"
+      ],
+      "first_tools": [
+        "ToolSearch",
+        "ToolSearch",
+        "ToolSearch"
+      ],
+      "skill_turns": [
+        null,
+        null,
+        null
+      ],
+      "skills_called": [
+        [],
+        [],
+        []
+      ],
+      "tools": [
+        [
+          "ToolSearch",
+          "WebFetch",
+          "WebFetch"
+        ],
+        [
+          "ToolSearch",
+          "WebFetch",
+          "WebFetch",
+          "Grep"
+        ],
+        [
+          "ToolSearch",
+          "WebFetch",
+          "WebSearch",
+          "Grep"
+        ]
+      ],
+      "self_read": 0,
+      "timeouts": 0,
+      "cost_usd": 0.6379
+    },
+    {
+      "query": "Kayıt akışı için 5 katılımcılı bir kullanıcı testi planı ve görev senaryoları yaz.",
+      "tag": "TR·ux-research→ux-designer",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": true,
+      "any_clean_rate": 0.0,
+      "any_raw_rate": 0.0,
+      "valid_runs": 2,
+      "pass_any": true,
+      "ended": [
+        "success",
+        "success",
+        "success"
+      ],
+      "first_tools": [
+        "Skill",
+        "Bash",
+        "Bash"
+      ],
+      "skill_turns": [
+        null,
+        null,
+        null
+      ],
+      "skills_called": [
+        [
+          "ux-designer"
+        ],
+        [],
+        [
+          "ux-designer"
+        ]
+      ],
+      "tools": [
+        [
+          "Skill",
+          "Read",
+          "Bash",
+          "Bash",
+          "Read"
+        ],
+        [
+          "Bash",
+          "Read",
+          "Read",
+          "Bash",
+          "Read",
+          "Read"
+        ],
+        [
+          "Bash",
+          "Read",
+          "Bash",
+          "Read",
+          "Skill",
+          "Read",
+          "Read"
+        ]
+      ],
+      "self_read": 1,
+      "timeouts": 0,
+      "cost_usd": 1.2707
+    },
+    {
+      "query": "Write a Playwright test that runs axe-core on every route and fails the build on violations.",
+      "tag": "EN·tooling",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": true,
+      "any_clean_rate": 0.0,
+      "any_raw_rate": 0.0,
+      "valid_runs": 1,
+      "pass_any": true,
+      "ended": [
+        "error_max_turns",
+        "error_max_turns",
+        "error_max_turns"
+      ],
+      "first_tools": [
+        "Bash",
+        "Bash",
+        "Bash"
+      ],
+      "skill_turns": [
+        null,
+        null,
+        null
+      ],
+      "skills_called": [
+        [],
+        [],
+        []
+      ],
+      "tools": [
+        [
+          "Bash",
+          "Read",
+          "Read",
+          "Bash",
+          "Read",
+          "Read",
+          "Bash",
+          "Write",
+          "Write",
+          "ToolSearch"
+        ],
+        [
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Bash",
+          "Bash",
+          "Bash"
+        ],
+        [
+          "Bash",
+          "Read",
+          "Read",
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Write",
+          "Bash"
+        ]
+      ],
+      "self_read": 2,
+      "timeouts": 0,
+      "cost_usd": 0.9233
+    },
+    {
+      "query": "src/pages/RegisterForm.tsx içindeki useEffect sonsuz döngüye giriyor, nedenini bul ve düzelt.",
+      "tag": "TR·bug→none",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": true,
+      "any_clean_rate": 0.0,
+      "any_raw_rate": 0.0,
+      "valid_runs": 3,
+      "pass_any": true,
+      "ended": [
+        "success",
+        "success",
+        "success"
+      ],
+      "first_tools": [
+        "Read",
+        "Read",
+        "Read"
+      ],
+      "skill_turns": [
+        null,
+        null,
+        null
+      ],
+      "skills_called": [
+        [],
+        [],
+        []
+      ],
+      "tools": [
+        [
+          "Read",
+          "Grep",
+          "Bash",
+          "Read",
+          "Read"
+        ],
+        [
+          "Read",
+          "Grep",
+          "Glob",
+          "Glob",
+          "Read"
+        ],
+        [
+          "Read",
+          "Grep",
+          "Glob",
+          "Read",
+          "Read",
+          "Bash"
+        ]
+      ],
+      "self_read": 0,
+      "timeouts": 0,
+      "cost_usd": 0.6211
+    }
+  ],
+  "summary": {
+    "total": 20,
+    "passed": 10,
+    "failed": 10,
+    "passed_any": 13,
+    "truncated_runs": 26,
+    "self_read_runs": 30,
+    "cost_usd": 22.316
+  }
+}

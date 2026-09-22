@@ -93,6 +93,71 @@ widened after the first run now yield measured evidence: `#main` links **8/8** w
 A5), no in-demo skip link (2.4.1 — A1). Real-page tally moves from 15/19 to **17/19** AA; the two remaining partials
 (1.3.2 layout-table order, 3.2.4 inconsistent naming) are unchanged. Labelled regression, not discovery.
 
+## Trigger measurement — does the description route the request to this skill? (2026-09-21, claude-opus-5)
+
+Protocol pre-registered in [`trigger/README.md`](trigger/README.md) before the run (metrics, n = 3, threshold 0.5, acceptance rule
+"≥ 8/10 positives **and** ≥ 8/10 negatives on `any_clean`"). Runner: [`trigger/trigger_eval.py`](trigger/trigger_eval.py)
+(Windows-safe variant of skill-creator's `run_eval.py`; two metrics; one project copy per worker). Raw: [`trigger/results.json`](trigger/results.json).
+Set: 20 queries — 10 should-trigger (TR/EN, 4 with a file path, 6 without), 10 near-miss negatives each tagged with the skill that *should* win.
+Environment: realistic 5-file React+Vite project, fixture `BrokenForm.tsx` as `src/pages/RegisterForm.tsx`, real `ux-a11y-review` uninstalled
+for the run, the other 27 skills installed (competitors live), `--max-turns 6`, edits disallowed. 60 runs, **$22.3**.
+
+| # | Etiket | Beklenen | first | any_clean | geçerli n | Bitiş | İlk araç / rakip skill |
+|---|---|---|---|---|---|---|---|
+| 1 | TR·keyword·path | tetikle | 0/3 | 0/1 ✗ | 1 | kesildi,kesildi,ok | Bash/Bash/Read · rakip: web-design-guidelines |
+| 2 | TR·intent·path | tetikle | 0/3 | 2/2 ✓ | 2 | kesildi,ok,ok | Glob/Glob/Read |
+| 3 | TR·intent·nopath | tetikle | 0/3 | 0/0 ✗ | 0 | kesildi,ok,ok | Bash/Bash/Bash |
+| 4 | TR·intent·nopath | tetikle | 0/3 | 0/0 ✗ | 0 | ok,ok,ok | Bash/Bash/Bash |
+| 5 | TR·blindspot·nopath | tetikle | 0/3 | 0/0 ✗ | 0 | kesildi,ok,zaman | Bash/Bash/Bash |
+| 6 | TR·nielsen·nopath | tetikle | 0/3 | 0/3 ✗ | 3 | ok,ok,ok | Glob/Glob/Glob · rakip: heuristic-evaluation |
+| 7 | EN·intent·path | tetikle | 0/3 | 2/3 ✓ | 3 | kesildi,kesildi,ok | Glob/Glob/Glob · rakip: heuristic-evaluation, wq-accessibility |
+| 8 | EN·intent·nopath | tetikle | 0/3 | 0/0 ✗ | 0 | kesildi,ok,ok | Bash/Bash/Bash |
+| 9 | EN·detail·nopath | tetikle | 0/3 | 0/0 ✗ | 0 | kesildi,ok,ok | Bash/Glob/Bash |
+| 10 | TR·razor·path | tetikle | 0/3 | 2/2 ✓ | 2 | kesildi,kesildi,kesildi | Glob/Bash/Glob |
+| 11 | TR·edit→wq-accessibility | tetikleme | 0/3 | 0/0 ✓ | 0 | kesildi,kesildi,kesildi | Read/Read/Read · rakip: wq-accessibility |
+| 12 | EN·edit→wq-accessibility | tetikleme | 0/3 | 0/2 ✓ | 2 | kesildi,kesildi,kesildi | Read/Read/Read |
+| 13 | TR·perf→wq-performance | tetikleme | 0/3 | 0/3 ✓ | 3 | ok,ok,ok | Bash/Bash/Bash · rakip: wq-core-web-vitals |
+| 14 | TR·seo→wq-seo | tetikleme | 0/3 | 0/2 ✓ | 2 | kesildi,ok,kesildi | Bash/Bash/Bash · rakip: wq-seo |
+| 15 | TR·visual→design skills | tetikleme | 0/3 | 0/0 ✓ | 0 | kesildi,kesildi,kesildi | Bash/Bash/Bash · rakip: frontend-design, redesign-existing-projects |
+| 16 | TR·knowledge | tetikleme | 0/3 | 0/3 ✓ | 3 | ok,ok,ok | None/None/None |
+| 17 | EN·knowledge | tetikleme | 0/3 | 0/3 ✓ | 3 | ok,ok,ok | ToolSearch/ToolSearch/ToolSearch |
+| 18 | TR·ux-research→ux-designer | tetikleme | 0/3 | 0/2 ✓ | 2 | ok,ok,ok | Skill/Bash/Bash · rakip: ux-designer |
+| 19 | EN·tooling | tetikleme | 0/3 | 0/1 ✓ | 1 | kesildi,kesildi,kesildi | Bash/Bash/Bash |
+| 20 | TR·bug→none | tetikleme | 0/3 | 0/3 ✓ | 3 | ok,ok,ok | Read/Read/Read |
+
+Tetiklemeli geçen (any_clean): 3/10 · Tetiklememeli geçen: 10/10 · first metriğiyle geçen: 10/20
+Kesilen koşu: 26/60 · self-read (geçersiz) koşu: 30/60 · maliyet $22.316 · model claude-opus-5 · 2026-09-21 · max-turns 6
+
+`first` = skill was the model's very first tool call (skill-creator's original metric). `any_clean` = skill invoked within the turn budget,
+counting only runs where the model did **not** open the test command file itself (`self_read`). Numbers before "✓/✗" are triggers/valid runs.
+
+**What the numbers do and do not say**
+
+- **Negatives: 10/10 pass, 0 false triggers in 30 runs** — including 11 runs where the model *did* read the test skill's description and still
+  chose another route. Predicted competitors won as tagged: `wq-accessibility` for edit requests, `wq-seo`, `wq-core-web-vitals`,
+  `frontend-design`/`redesign-existing-projects`, `ux-designer`. Knowledge questions used no skill at all. The description does not over-trigger.
+- **Positives with a file path: 3 of 4 pass on `any_clean`** — q2, q7, q10 (2/2, 2/3, 2/2); the fourth, q1 (bare keyword), is discussed below.
+  These are the only positive verdicts the protocol allows.
+- **Positives without a path (q3, q4, q5, q8, q9): no verdict.** In all 15 runs the model ran `ls`/`find`, saw `.claude/commands/`, opened the test
+  command file, then invoked the skill (`any_raw` = 15/15). The pre-registered rule counts these as invalid samples because the trigger cannot be
+  separated from the discovery. This is a **methodology artifact** of placing the test command inside the project (skill-creator's approach) in
+  front of a model that explores before acting — not evidence for or against the description. Note: skill-creator's own scorer
+  counts a `Read` of the command file as a trigger, so upstream would score these 15 runs 15/15 and the acceptance rule would pass;
+  this protocol pre-registered them as invalid because trigger and discovery cannot be separated.
+- **q6 fails (0/3): a request phrased as "Nielsen heuristics, usability" routes to `heuristic-evaluation`.** The query asks for usability only, no
+  accessibility; the dedicated skill winning is arguably correct routing, and `ux-a11y-review` itself delegates step 2 to that skill. The label
+  "should trigger" is debatable — recorded as a finding, not a defect.
+- **q1 — the literal Turkish trigger phrase "Arayüzü denetle: <path>"** — triggered late in 2/3 (both after self-read) and lost once to
+  `web-design-guidelines`. Weak signal that the bare keyword is not enough for a stack-agnostic request; see proposal below.
+- **`first` = 0/60: this skill was never the model's first call.** In 1/60 runs the first call was a competitor skill (`ux-designer`, q18);
+  in the other 59 it was exploration (`Bash`/`Glob`/`Read`). The skill-creator "first call" metric carries no information here; kept as a diagnostic only.
+- **Pre-registered acceptance rule: not met as written** (positives 3/10 on `any_clean`), but 6 of the 7 misses are "no valid sample", not
+  "did not trigger". Honest summary: *no over-triggering; correct routing when intent is stated and a file is named; unmeasured for path-less requests.*
+
+**Proposal (not applied — the user decides):** re-run the 6 path-less positives with the test command placed **outside** the project tree (user-level
+commands dir) so `find` cannot reveal it (~$8, n = 3). Only if that run shows misses, consider adding intent verbs to the description
+("incele, denetle, audit, review… erişilebilirlik/kullanılabilirlik raporu") — the description was not edited in this iteration.
+
 ## Limitations (read before citing any number above)
 
 - **n = 1 per condition.** Every with/without pair was run once. LLM output varies between runs; 19/19 vs 18/19 is one
@@ -109,11 +174,17 @@ A5), no in-demo skip link (2.4.1 — A1). Real-page tally moves from 15/19 to **
 - **Value is model-relative.** "Bare model finds 18/19" is a statement about one model on one date. It will drift as
   models change; every future `grading.json` records `model` and `date`, and the baseline is re-run per model.
 - **Grading in iteration-4 was again inline by the same agent** (keyword pre-scan + manual check of every miss). No second grader yet.
+- **Trigger measurement is one model, one day, n = 3, $22.** `first` is dead as a metric here (0/60); `any_clean` has no sample for path-less
+  positives because the model discovers the test command by exploring the project (30/60 runs `self_read`). 26/60 runs hit `--max-turns 6`; for
+  positives the cut came after the skill call in every triggered run, so it does not hide triggers — but a longer budget could turn some `any=False`
+  runs into triggers. The runner is a Windows patch of skill-creator's, not the upstream script; differences are listed in its docstring.
 - **`without` runs had other installed skills available** (heuristic-evaluation, wq-accessibility, web-design-guidelines could auto-fire). That is the honest "installed environment" baseline, not a pristine model.
 
 ## Skill status: draft
- The fixture no longer discriminates on *finding*; further fixture-driven edits would be overfitting.
-Next gate: a real, publicly reachable page, run in a session with a browser (step 4 — Tab-through — has not yet executed).
+The fixture no longer discriminates on *finding*; further fixture-driven edits would be overfitting. The W3C BAD page has been
+run in-browser (Tab pass, focus trap reproduced — see below); the description does not over-trigger (0/30).
+Next gates: (1) an **unseen** public page in a browser session — discovery, not regression; (2) trigger re-run for the six
+path-less queries with the test command outside the project tree.
 
 ## Real page — W3C WAI "Before and After Demo" (inaccessible home page), 2026-09-18
 

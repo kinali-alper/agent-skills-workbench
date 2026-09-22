@@ -1,0 +1,23 @@
+[
+  {"query": "Arayüzü denetle: src/pages/RegisterForm.tsx", "should_trigger": true, "tag": "TR·keyword·path"},
+  {"query": "src/pages/RegisterForm.tsx dosyasını erişilebilirlik ve kullanılabilirlik açısından denetle; bulguları satır numarasıyla, WCAG 2.2 ve Nielsen referansıyla raporla. Kod değiştirme.", "should_trigger": true, "tag": "TR·intent·path"},
+  {"query": "Kayıt formumuz WCAG 2.2 AA'ya uyuyor mu? Uymayan yerleri ve nasıl düzeltileceğini rapor et, dosyaya dokunma.", "should_trigger": true, "tag": "TR·intent·nopath"},
+  {"query": "Bu formu klavyeyle kullanmak mümkün mü, ekran okuyucu etiketleri doğru mu, hata mesajları anlaşılır mı — bir UX/erişilebilirlik incelemesi istiyorum.", "should_trigger": true, "tag": "TR·intent·nopath"},
+  {"query": "axe temiz çıktı ama kullanıcılar formda takılıyor. İnsan gözüyle bir kullanılabilirlik ve erişilebilirlik denetimi yap, otomatik araçların kaçırdıklarını bul.", "should_trigger": true, "tag": "TR·blindspot·nopath"},
+  {"query": "Tasarım ekibi RegisterForm ekranının kullanılabilirliğini sorguluyor. Nielsen heuristikleriyle şiddet dereceli bir inceleme raporu çıkarır mısın?", "should_trigger": true, "tag": "TR·nielsen·nopath"},
+  {"query": "Do a full UX and accessibility review of src/pages/RegisterForm.tsx — findings with line numbers, WCAG 2.2 and Nielsen references, concrete fixes. Report only, don't edit.", "should_trigger": true, "tag": "EN·intent·path"},
+  {"query": "Before we ship the registration page, audit it for accessibility and usability problems and give me a prioritized findings report.", "should_trigger": true, "tag": "EN·intent·nopath"},
+  {"query": "Review the registration form markup for a11y issues and heuristic violations (labels, focus, error messages, target sizes). I only want the report.", "should_trigger": true, "tag": "EN·detail·nopath"},
+  {"query": "Views/Account/Register.cshtml için UX + erişilebilirlik denetimi yap; Razor tarafında hata özetinin ve doğrulama mesajlarının erişilebilir olup olmadığını da değerlendir.", "should_trigger": true, "tag": "TR·razor·path"},
+
+  {"query": "src/pages/RegisterForm.tsx dosyasındaki erişilebilirlik hatalarını düzelt: eksik label'ları ekle, aria-invalid ve aria-describedby bağla, kontrastı artır.", "should_trigger": false, "tag": "TR·edit→wq-accessibility"},
+  {"query": "Add aria-labels to every icon-only button in src/pages/RegisterForm.tsx and make the focus ring visible.", "should_trigger": false, "tag": "EN·edit→wq-accessibility"},
+  {"query": "Sitenin Lighthouse performans skoru 61, LCP 4.2 sn. Nasıl hızlandırırız?", "should_trigger": false, "tag": "TR·perf→wq-performance"},
+  {"query": "Kayıt sayfasının SEO'sunu kontrol et: title, meta description, canonical, Open Graph etiketleri.", "should_trigger": false, "tag": "TR·seo→wq-seo"},
+  {"query": "Bu kayıt formu çok sıradan görünüyor; daha modern, daha şık bir görsel tasarım öner ve uygula.", "should_trigger": false, "tag": "TR·visual→design skills"},
+  {"query": "Nielsen'in 10 kullanılabilirlik heuristiği nedir? Her birini bir cümleyle açıkla.", "should_trigger": false, "tag": "TR·knowledge"},
+  {"query": "What exactly does WCAG 2.2 success criterion 2.5.8 Target Size (Minimum) require, and what are its exceptions?", "should_trigger": false, "tag": "EN·knowledge"},
+  {"query": "Kayıt akışı için 5 katılımcılı bir kullanıcı testi planı ve görev senaryoları yaz.", "should_trigger": false, "tag": "TR·ux-research→ux-designer"},
+  {"query": "Write a Playwright test that runs axe-core on every route and fails the build on violations.", "should_trigger": false, "tag": "EN·tooling"},
+  {"query": "src/pages/RegisterForm.tsx içindeki useEffect sonsuz döngüye giriyor, nedenini bul ve düzelt.", "should_trigger": false, "tag": "TR·bug→none"}
+]

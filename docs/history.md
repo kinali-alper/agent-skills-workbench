@@ -41,3 +41,11 @@
   Decomposition: finding power = checklist content; mechanism = brevity, severity, completeness, sweep, browser/TODO.
   W3C regression with the widened rules: 15 → 17/19 (1.4.1 colour-only links 8/8, no skip link measured in-browser; focus
   trap reproduced). Decision: **no skill edit** — fixture saturated. Raw it-4 reports published after leak scan.
+- **2026-09-21 (late night)** — Trigger measurement for the `ux-a11y-review` description, protocol pre-registered
+  (`skills/ux-a11y-review-workspace/trigger/README.md`): 20 queries (10 should / 10 near-miss negatives tagged with the
+  skill that should win) × 3 runs, `claude -p --model claude-opus-5 --max-turns 6`, competitors installed, real skill
+  removed for the run; Windows-safe runner derived from skill-creator's `run_eval.py` (thread reader, two metrics,
+  per-worker project copies). Result: negatives 10/10, **0 false triggers in 30 runs**; path-bearing positives 3/3;
+  path-less positives **no verdict** — the model found the test command by exploring the project in 15/15 runs
+  (`self_read`); skill-creator's "first call" metric 0/60 (model always explores first). Description **not edited**;
+  proposal: re-run the 6 path-less queries with the command outside the project. Cost $22.3.
