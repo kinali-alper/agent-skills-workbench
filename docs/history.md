@@ -49,3 +49,9 @@
   path-less positives **no verdict** — the model found the test command by exploring the project in 15/15 runs
   (`self_read`); skill-creator's "first call" metric 0/60 (model always explores first). Description **not edited**;
   proposal: re-run the 6 path-less queries with the command outside the project. Cost $22.3.
+- **2026-10-06 (night)** — Two tooling bugs found on 30 Sep fixed (local only, not committed). `publish-check.sh`: the
+  `PATHS` pattern wrote backslashes as `\|`, which ERE reads as a literal pipe, so backslash-style Windows paths never
+  matched; now `\\` (verified by planting such a path in an untracked file: exit 1; removed: TEMİZ, 277 files). The
+  decision row of all 27 `vendor/*/REVIEW.md` had lost its `| Karar |` cell to a U+0001 left by an earlier substitution;
+  restored. `INTEGRITY.sha256` regenerated (27 hashes), `MANIFEST.md` unchanged. Checks: integrity, audit corpus,
+  publish-check green.

@@ -13,7 +13,7 @@
 | Görünmez unicode | Yok |
 | Harici alanlar | Tanınmış (gsap.com, MDN, GitHub, resmi tasarım sistemleri) |
 | Katman | 3 · tasarım yönü (üretim) |
- **ONAYLI — kurulabilir** |
+| Karar | **ONAYLI — kurulabilir** |
 
 ## Notlar
 - Kategori: görsel/estetik yön

@@ -8,7 +8,7 @@
 | Betik / binary | Yok |
 | allowed-tools / hook | Yok |
 | Katman | 6 · süreç / skill yazımı |
- **ONAYLI** |
+| Karar | **ONAYLI** |
 
 ## Notlar
 - Rol: UI/UX değil, **skill yazım / kapsam netleştirme** altyapısı. Bir planı/skill kapsamını soru-cevapla sertleştirmek için.

@@ -9,7 +9,7 @@
 | allowed-tools / hook | Yok (metadata: author, version) |
 | Harici alanlar | web.dev, developer.chrome.com, MDN, w3.org gibi tanınmış kaynaklar |
 | Katman | 5 · web kalitesi |
- **ONAYLI** |
+| Karar | **ONAYLI** |
 
 ## Notlar
 - Skill adı çakışma riskine karşı `wq-` öneki ile kuruldu (frontmatter `name` alanı orijinal kaldı).

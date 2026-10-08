@@ -7,7 +7,7 @@
 | Denetim | skill-audit.sh → TEMİZ; 71 satır, elle okundu |
 | Betik / hook / allowed-tools | Yok |
 | Katman | 3 · tasarım yönü (üretim) |
- **ONAYLI** |
+| Karar | **ONAYLI** |
 
 ## Notlar
 - Rol: görsel tasarım **duruşu** — konudan çıkan kimlik, iki geçişli süreç (plan → brief'e karşı özdenetim → kod), 5 "AI tasarımı" klişesi listesi, mikrokopi kuralları.

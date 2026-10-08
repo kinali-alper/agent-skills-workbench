@@ -5,8 +5,9 @@
 set -u
 cd "$(dirname "$0")/.."
 
-# Genel desenler (herkes için geçerli): Windows/POSIX makine yolları, temp/oturum klasörleri
-PATHS='[a-z]:\|\users\|/c/users/|/users/[a-z]+/|appdata\local\temp|scratchpad\|/scratchpad/|claudelocalsessions'
+# Genel desenler (herkes için geçerli): Windows/POSIX makine yolları, temp/oturum klasörleri.
+# ERE'de ters bölü \\ ile yazılır: `\|` alternasyon değil düz karakterdir (30 Eyl: ters bölülü Windows yolları kaçıyordu).
+PATHS='[a-z]:\\users\\|/c/users/|/users/[a-z]+/|appdata\\local\\temp|scratchpad\\|/scratchpad/|claudelocalsessions'
 PATTERN="$PATHS"
 # Yerel desenler: kurum/proje/kişi adları — izlenmeyen dosyadan
 LOCAL="scripts/publish-check.local"

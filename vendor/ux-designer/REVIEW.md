@@ -11,7 +11,7 @@
 | Harici alanlar | nngroup.com, w3.org, apple, material — tanınmış |
 | Yapı | SKILL.md (297 satır) referanslara **koşullu işaretçi** ile ulaşır ("For forms, see 07-…") → progressive disclosure doğru; 24 dosya her seferinde yüklenmez |
 | Katman | 2 · UX bilgi tabanı |
- **ONAYLI** |
+| Karar | **ONAYLI** |
 
 ## Notlar
 - Rol: **UX/kullanılabilirlik bilgi tabanı** — Nielsen, Gestalt, Laws of UX, form/navigasyon/hata/onboarding/UX writing. Bizim UX bacağının ana referansı.

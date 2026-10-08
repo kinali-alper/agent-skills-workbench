@@ -13,7 +13,7 @@
 | Görünmez unicode | Yok |
 | Harici alanlar | Tanınmış (gsap.com, MDN, GitHub, resmi tasarım sistemleri) |
 | Katman | 4 · hareket |
- **ONAYLI — kurulabilir** |
+| Karar | **ONAYLI — kurulabilir** |
 
 ## Notlar
 - Kategori: hareket tasarımı ilkeleri
