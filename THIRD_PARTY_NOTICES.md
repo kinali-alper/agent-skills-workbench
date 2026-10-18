@@ -1,9 +1,10 @@
 # Third-party notices
 
-All vendored skills under `vendor/` are redistributed under their original licenses (**MIT**, except `frontend-design`: **Apache-2.0**). Each folder carries the upstream `LICENSE` and a `REVIEW.md` (security audit record, source commit, decision). Modifications: `name` field prefixed/renamed where noted in REVIEW.md; `ux-designer` description trimmed (see its REVIEW.md); `agents/openai.yaml` and plugin scaffolding not included.
+All vendored skills under `vendor/` are redistributed under their original licenses (**MIT**, except `frontend-design`: **Apache-2.0**). Each folder carries the upstream `LICENSE` and a `REVIEW.md` (security audit record, source commit, decision). Modifications: `name` field prefixed/renamed where noted in REVIEW.md; `ux-designer` description trimmed (see its REVIEW.md); `web-design-guidelines` reads a pinned local copy of the upstream rule list (`command.md`) instead of fetching it at run time (see its REVIEW.md); `agents/openai.yaml` and plugin scaffolding not included.
 
 | Skill | Upstream | Copyright holder | License |
 |---|---|---|---|
+| baseline-ui | ibelick/ui-skills (skills/baseline-ui) | Julien Thibeaut | MIT |
 | design-taste-frontend | Leonxlnx/taste-skill | Leonxlnx | MIT |
 | frontend-design | anthropics/claude-code (plugins/frontend-design) | Anthropic PBC | Apache-2.0 |
 | grill-me | mattpocock/skills | Matt Pocock | MIT |
@@ -18,6 +19,7 @@ All vendored skills under `vendor/` are redistributed under their original licen
 | heuristic-evaluation | Owl-Listener/designer-skills (prototyping-testing) | MC Dean | MIT |
 | high-end-visual-design | Leonxlnx/taste-skill | Leonxlnx | MIT |
 | industrial-brutalist-ui | Leonxlnx/taste-skill | Leonxlnx | MIT |
+| interface-design | Dammyjay93/interface-design | Damola Akinleye | MIT |
 | minimalist-ui | Leonxlnx/taste-skill | Leonxlnx | MIT |
 | motion-design | LottieFiles/motion-design-skill | LottieFiles | MIT |
 | redesign-existing-projects | Leonxlnx/taste-skill | Leonxlnx | MIT |

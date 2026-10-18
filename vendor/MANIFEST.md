@@ -7,13 +7,15 @@ Katmanlar: **1** inceleme çekirdeği · **2** UX bilgi tabanı · **3** tasarı
 | Skill | Katman | Upstream | Pin | Lisans | Audit | SKILL.md satır | Tetik (description) |
 |---|---|---|---|---|---|---|---|
 | heuristic-evaluation | 1 · inceleme çekirdeği | Owl-Listener/designer-skills | `9a6930c` 2026-09-05 | MIT | TEMİZ | 41 | Run an expert review against Nielsen's heuristics and domain criteria,… |
-| web-design-guidelines | 1 · inceleme çekirdeği | vercel-labs/agent-skills | `063bee9` 2026-08-28 | MIT | TEMİZ (1 istisna) | 39 | review my UI, check accessibility, audit design, review UX |
+| web-design-guidelines | 1 · inceleme çekirdeği | vercel-labs/agent-skills | `063bee9` 2026-08-28 | MIT | TEMİZ | 35 | review my UI, check accessibility, audit design, review UX |
 | wq-accessibility | 1 · inceleme çekirdeği | addyosmani/web-quality-skills | `afa8da9` 2026-08-24 | MIT | TEMİZ (3 istisna) | 464 | improve accessibility, a11y audit, WCAG compliance, screen reader support |
 | ux-designer | 2 · UX bilgi tabanı | szilu/ux-designer-skill | `da9e9d0` 2026-08-14 | MIT | TEMİZ (5 istisna) | 322 | UX/UI design principles for building and critiquing interfaces. Use fo… |
-| design-taste-frontend | 3 · tasarım yönü (üretim) | Leonxlnx/taste-skill | `3c7017d` 2026-05-26 | MIT | TEMİZ (1 istisna) | 1206 | Anti-slop frontend skill for landing pages, portfolios, and redesigns.… |
+| baseline-ui | 3 · tasarım yönü (üretim) | ibelick/ui-skills | `3434a76` 2026-10-16 | MIT | TEMİZ (1 istisna) | 85 | Quickly deslop UI code by fixing spacing, hierarchy, typography, and s… |
+| design-taste-frontend | 3 · tasarım yönü (üretim) | Leonxlnx/taste-skill | `3c7017d` 2026-05-26 | MIT | TEMİZ (2 istisna) | 1206 | Anti-slop frontend skill for landing pages, portfolios, and redesigns.… |
 | frontend-design | 3 · tasarım yönü (üretim) | anthropics/claude-code | `dbdd79c` 2026-09-02 | Apache-2.0 | TEMİZ | 71 | Guidance for distinctive, intentional visual design when building new … |
 | high-end-visual-design | 3 · tasarım yönü (üretim) | Leonxlnx/taste-skill | `3206dd4` 2026-03-20 | MIT | TEMİZ | 98 | Teaches the AI to design like a high-end agency. Defines the exact fon… |
 | industrial-brutalist-ui | 3 · tasarım yönü (üretim) | Leonxlnx/taste-skill | `3206dd4` 2026-03-20 | MIT | TEMİZ | 92 | Raw mechanical interfaces fusing Swiss typographic print with military… |
+| interface-design | 3 · tasarım yönü (üretim) | Dammyjay93/interface-design | `2f9be32` 2026-06-20 | MIT | TEMİZ | 320 | Craft-first interface design for dashboards, admin panels, SaaS apps, … |
 | minimalist-ui | 3 · tasarım yönü (üretim) | Leonxlnx/taste-skill | `3206dd4` 2026-03-20 | MIT | TEMİZ | 85 | Clean editorial-style interfaces. Warm monochrome palette, typographic… |
 | redesign-existing-projects | 3 · tasarım yönü (üretim) | Leonxlnx/taste-skill | `3206dd4` 2026-03-20 | MIT | TEMİZ | 178 | Upgrades existing websites and apps to premium quality. Audits current… |
 | gsap-core | 4 · hareket | greensock/gsap-skills | `96c4b01` 2026-03-09 | MIT | TEMİZ | 254 | Official GSAP skill for the core API — gsap.to(), from(), fromTo(), ea… |
@@ -34,4 +36,4 @@ Katmanlar: **1** inceleme çekirdeği · **2** UX bilgi tabanı · **3** tasarı
 | to-spec | 6 · süreç / skill yazımı | mattpocock/skills | `c55ee46` 2026-09 | MIT | TEMİZ | 75 | Turn the current conversation into a spec and publish it to the projec… |
 | writing-for-agents | 6 · süreç / skill yazımı | mattpocock/skills | `c55ee46` 2026-09 | MIT | TEMİZ | 81 | Writing documents for agents. Use when creating or editing skills, or … |
 
-Toplam 27 skill · pinli 27 · audit TEMİZ 27.
+Toplam 29 skill · pinli 29 · audit TEMİZ 29.

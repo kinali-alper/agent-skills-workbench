@@ -12,6 +12,7 @@
 | Prompt injection | Yok |
 | Görünmez unicode | Yok |
 | Harici alanlar | Tanınmış (gsap.com, MDN, GitHub, resmi tasarım sistemleri) |
+| Sürümsüz çağrı | `npx shadcn@latest` SKILL.md:99, 1006, 1007 — shadcn/ui'nin **belgelenmiş** kurulum komutu; skill bunu kullanıcıya öneriyor, kendisi çalıştırmıyor ve kendini güncellemiyor. 3b denetimi 16 Eki 2026'da eklendi; istisna `AUDIT-ALLOW`'da dosya:satır özgü |
 | Katman | 3 · tasarım yönü (üretim) |
 | Karar | **ONAYLI — kurulabilir** |
 

@@ -154,9 +154,53 @@ counting only runs where the model did **not** open the test command file itself
 - **Pre-registered acceptance rule: not met as written** (positives 3/10 on `any_clean`), but 6 of the 7 misses are "no valid sample", not
   "did not trigger". Honest summary: *no over-triggering; correct routing when intent is stated and a file is named; unmeasured for path-less requests.*
 
-**Proposal (not applied — the user decides):** re-run the 6 path-less positives with the test command placed **outside** the project tree (user-level
-commands dir) so `find` cannot reveal it (~$8, n = 3). Only if that run shows misses, consider adding intent verbs to the description
-("incele, denetle, audit, review… erişilebilirlik/kullanılabilirlik raporu") — the description was not edited in this iteration.
+### G1 follow-up — path-less queries re-run with the command outside the project (2026-10-16)
+
+The proposal above was executed. Test command written to `~/.claude/commands` (`--commands-dir`), same model, same
+threshold, 6 path-less positives x 3 runs, real skill uninstalled, competitors live.
+
+**Result: 6/6 pass on `any_clean`, `self_read` 0/18.** The artifact is gone, which confirms the earlier "no verdict"
+was a property of the method, not of the description: **path-less requests do trigger the skill** (invoked at tool
+call 5-7 in 16 of 18 runs). `first` is 0/18 again - dead metric here.
+
+With G1 the pre-registered acceptance rule is met: positives **9/10**, negatives **10/10**. The remaining positive, q1 (bare
+keyword + path), **failed** on its single valid run in the first batch (one run went to `web-design-guidelines`); n = 1,
+so the evidence is weak — re-measurable with the G1 method for about $3. **The description is still unedited** and
+no longer has a measured reason to change. Per-query table: `trigger/README.md`; raw: `trigger/g1-results.json`.
+
+Cost: **$20.54** for 18 runs (~$1.14/run) against a ~$7 estimate derived from the same queries in the first batch -
+**3x over**. Measured cause: without a discoverable command file the model explores longer, and **13 of 18 runs hit
+`--max-turns 6`** (26 of 60 in the first batch). Budget future trigger runs with the turn ceiling in mind.
+
+## Real page #2 — an unseen Turkish municipality home page (2026-10-16)
+
+Full report: [`real-page-2/report.md`](real-page-2/report.md). The site is **not named in this repo** — the findings
+are real and the page is public, but naming a public body here is the repo owner's call. Read-only: keyboard
+navigation, no form submitted, nothing clicked.
+
+**Measurement conditions, stated because they bound the result:** the in-app browser pane does not paint on this
+machine (viewport 0×0), so the accessibility tree came back empty. The DOM and all stylesheets were read with
+JavaScript and the keyboard pass used **real Tab presses** logged through a `focusin` listener. Anything needing
+layout — contrast (A3) and target size (A9) — is therefore **doğrulanamaz**, and the report says so instead of
+guessing.
+
+**Verdicts:** A1 ihlal · A2 ihlal · A3 doğrulanamaz · A4 ihlal · A5 doğrulanamaz · A6 ihlal · A7 ihlal · A8 ihlal ·
+A9 doğrulanamaz · A10 uygun · A11 uygulanamaz · A12 uygun · A13 doğrulanamaz.
+
+**What the browser step added that reading the HTML would not:**
+
+| Finding | Why only behaviour shows it |
+|---|---|
+| **The first 13 Tab stops are all nameless** (6 × empty `a.glink href="#"` language switchers → 3 social icons → 2 banners → logo; the first labelled stop is Tab 14, "ÇÖZÜM MERKEZİ") | In the source these 13 elements sit far apart and each looks like a small, separate defect. In use, the keyboard user's entire entry into the page is unlabelled. |
+| **`outline: none` in 14 rules against `:focus-visible` in 4** | The ratio only appears when every stylesheet is counted together; no single file shows it. |
+| A3 and A9 staying `doğrulanamaz` | The skill declines to invent a contrast or target-size number when layout is unavailable — the four-state dictionary doing its job on a real page. |
+
+Scale for context: 1,449 DOM nodes · 330 focusable elements · 164 images, **85 with no `alt` attribute at all** ·
+7 form controls, **4 unlabelled** (both search fields placeholder-only, and the KVKK consent checkbox) · no `h1`,
+no `main`/`nav`/`header`/`footer`, heading order H3, H2, H3, H3, H5… · no skip link.
+
+**Not covered:** the U-list (usability) was not applied — judging those needs walking the flow, which means submitting
+forms on a third party's public site. Left out on purpose.
 
 ## Limitations (read before citing any number above)
 
@@ -183,8 +227,10 @@ commands dir) so `find` cannot reveal it (~$8, n = 3). Only if that run shows mi
 ## Skill status: draft
 The fixture no longer discriminates on *finding*; further fixture-driven edits would be overfitting. The W3C BAD page has been
 run in-browser (Tab pass, focus trap reproduced — see below); the description does not over-trigger (0/30).
-Next gates: (1) an **unseen** public page in a browser session — discovery, not regression; (2) trigger re-run for the six
-path-less queries with the test command outside the project tree.
+Both gates closed on 2026-10-16. **G2** — an unseen public page, run in a browser session — is in
+[`real-page-2/report.md`](real-page-2/report.md): a Turkish municipality home page with no answer key. **G1** —
+the trigger re-run for the six path-less queries — passed 6/6 with the artifact eliminated (see the G1 follow-up
+above). `draft → stable` is now a decision, not a missing measurement.
 
 ## Real page — W3C WAI "Before and After Demo" (inaccessible home page), 2026-09-18
 

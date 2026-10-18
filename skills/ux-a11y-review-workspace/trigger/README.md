@@ -31,3 +31,36 @@ Yöntem skill-creator'ın "Description Optimization" akışından türetildi; ya
 - `first` metriği 60 koşuda 0 — bu model/harness'te ilk eylem hep keşif; metrik bilgi taşımıyor.
 - q6 (yalnız Nielsen/kullanılabilirlik isteği) `heuristic-evaluation`'a gitti — muhtemelen doğru yönlendirme, etiket tartışmalı.
 - **Kabul kuralı yazıldığı gibi karşılanmadı** (3/10) ama 7 kayıptan 6'sı "örnek yok". Description **düzenlenmedi**; öneri: komut dosyasını proje dışına koyup yalnız yol vermeyen 6 sorguyu yeniden koş (~$8).
+
+## G1 — yol vermeyen sorgular, komut dosyası proje DIŞINDA (16 Eki 2026)
+
+İlk koşunun artefaktını kaldırmak için test komutu `~/.claude/commands` altına yazıldı (`--commands-dir`);
+böylece model projeyi listeleyerek komut dosyasını bulamıyor. Sorgu seti: ilk turun **6 yol vermeyen tetiklemeli**
+sorgusu (`g1-nopath.json`), aynı model (claude-opus-5), aynı eşik (0,5), 3 koşu, `--max-turns 6`, gerçek skill
+yine kaldırıldı, rakipler kurulu.
+
+| Etiket | first | any_clean | Skill'in çağrıldığı araç sırası | Bitiş |
+|---|---|---|---|---|
+| TR·intent·nopath | 0/3 | **3/3** | 6, 6, 7 | kesildi, kesildi, ok |
+| TR·intent·nopath | 0/3 | **2/3** | —, 5, 5 | kesildi, kesildi, ok |
+| TR·blindspot·nopath | 0/3 | **3/3** | 7, 5, 5 | kesildi ×3 |
+| TR·nielsen·nopath | 0/3 | **2/3** | 5, —, 5 | kesildi ×3 |
+| EN·intent·nopath | 0/3 | **3/3** | 6, 6, 7 | kesildi ×3 |
+| EN·detail·nopath | 0/3 | **3/3** | 7, 7, 6 | ok ×3 |
+
+**Sonuç: 6/6 geçti.** `self_read` **0/18** → artefakt tamamen kalktı; yani ilk turdaki "hüküm yok" durumu gerçekten
+yöntemden geliyordu, description'dan değil. **Yol vermeyen istekler de skill'i tetikliyor.**
+Ön-kayıtlı kabul kuralı artık karşılanıyor: tetiklemeli **9/10** (G1'in 6'sı + ilk turun yol veren 3'ü), tetiklememeli **10/10**. Kalan 1 sorgu q1
+("Arayüzü denetle: <yol>" — çıplak anahtar kelime) **başarısız**: tek geçerli koşuda tetiklemedi, bir koşuda
+`web-design-guidelines` kazandı. n = 1 olduğu için zayıf kanıt; istenirse G1 yöntemiyle tekrar ölçülür (~$3).
+
+`first` metriği yine **0/18** — bu model/harness'te skill hiçbir zaman ilk araç çağrısı olmuyor; metrik ölü.
+
+**Maliyet: $20,54** (18 koşu, koşu başına ~$1,14). İlk turun aynı sorgularındaki ölçüme göre tahmin ~$7'ydi;
+**3 kat aştı**. Sebep ölçülebilir: komut dosyası projede bulunamadığı için model daha uzun keşif yaptı ve
+**18 koşunun 13'ü `--max-turns 6` sınırına dayandı** (ilk turda bu oran 26/60'tı). Ders: artefaktı kaldırmak
+maliyeti artırıyor; bir sonraki tetik ölçümünde tur bütçesi ve maliyet tahmini buna göre kurulmalı.
+
+**G1 dosyaları:** `g1-nopath.json` (6 sorgu), `g1-results.json` (ham sonuç). Tek düzenleme: `commands_dir` alanındaki
+makine yolu `~/.claude/commands` olarak normalleştirildi (`publish-check.sh` kuralı); ölçümü etkilemez.
+

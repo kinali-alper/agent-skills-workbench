@@ -1,0 +1,7 @@
+# visual-design-review — kendi yazdığımız dosyalar; denetim "Markdown dışı dosya → insan okusun" diyor, okundu.
+# Gerekçe: betik yalnız standart kütüphane kullanır (argparse, json, math, re, sys, pathlib); ağ çağrısı, alt süreç,
+# dosya yazma ve ortam değişkeni okuma yok — sadece verilen yolları okur ve rapor basar. Fixture'lar iki statik HTML:
+# biri bilerek kusurlu, biri disiplinli; ikisi de evals/BEKLENEN.md'de beklenen çıkış koduyla kayıtlı ve
+# install.sh evals/ klasörünü kurmaz.
+^scripts/visual-scan\.py$
+^evals/(slop|temiz)\.html$

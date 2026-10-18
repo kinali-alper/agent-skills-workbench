@@ -1,0 +1,64 @@
+{
+  "skill_name": "visual-design-review",
+  "notes": "Fixture'lar bu klasörde (slop.html, temiz.html) ve beklenen betik çıktıları evals/BEKLENEN.md'de kayıtlı. Koşu düzeni ux-a11y-review ile aynı olmalı: fixture TEK BAŞINA temiz bir geçici klasöre kopyalanır, with-skill koşusunda skill'in evals/ hariç kopyası da oraya konur, alt-ajan repo'yu ve BEKLENEN.md'yi görmez (cevap anahtarı sızmasın). Baseline = visual-design-review hariç kurulu skill'ler (baseline-ui, interface-design, frontend-design vb. kendiliğinden tetiklenebilir); delta tam olarak bu skill'in eklediğini ölçer. 2026-10-16 itibarıyla YALNIZ betik tarafı ölçüldü (16 vs 0 işaret); izole alt-ajan koşusu henüz yapılmadı — bkz. ../visual-design-review-workspace/RESULTS.md.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "slop-fixture",
+      "prompt": "Bu sayfanın görsel tasarımını denetle. Yüzey: tanıtım/giriş sayfası. Arayüz dili Türkçe. Yalnız bu dosya var; skill ve referans dosyalarını okuyabilirsin.",
+      "files": ["evals/slop.html"],
+      "expected_output": "G1–G12 hükümleri eksiksiz; betik raporu (≥4 işaret) rapora girmiş; her ihlal dosya:satır + 'yerine' taşıyor; uydurma bulgu yok.",
+      "expectations": [
+        "Betiğin işaret sayısı raporda (beklenen 16, eşik ≥4)",
+        "G2 ölçeksiz yazı boyutu çeşitliliği raporlanmış",
+        "G3 varsayılan yazı tipi (Inter) raporlanmış",
+        "G4/G5 mor-indigo degrade raporlanmış",
+        "G6 tek tip kart kromu / çok sayıda yarıçap-gölge raporlanmış",
+        "G7 üç eş kart + tam ortalanmış giriş raporlanmış",
+        "G11 jenerik mikro metin ('Keşfet', 'Harika bir deneyim') raporlanmış",
+        "G12 panel yüzeyinde dekoratif hareket/cam raporlanmış",
+        "Türkçe büyük harf tuzağı (lang yok + uppercase) raporlanmış",
+        "Her ihlal satırında 'yerine ne' var",
+        "Render yok notu ya da iki kare mevcut",
+        "İnsan TODO bloğu mevcut"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "temiz-fixture-negatif-kontrol",
+      "prompt": "Bu sayfanın görsel tasarımını denetle. Yüzey: yönetim paneli. Arayüz dili Türkçe.",
+      "files": ["evals/temiz.html"],
+      "expected_output": "0 ihlal; G1–G12 hükümleri 'uygun / uygulanamaz / doğrulanamaz' olarak yazılmış. Uydurma ihlal = başarısız.",
+      "expectations": [
+        "Betiğin işaret sayısı 0–1",
+        "Hiçbir G maddesi uydurma ihlal almamış",
+        "Doğrulanamaz maddeler (hesaplanmış stil, alan payı) İnsan TODO'da",
+        "Rapor 'kip: İşlet' eşiklerini kullanmış (animasyon beklentisi düşük)"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "kip-uyumu",
+      "prompt": "Bu sayfanın görsel tasarımını denetle. Yüzey: yoğun veri paneli (günde onlarca kez açılıyor).",
+      "files": ["evals/slop.html"],
+      "expected_output": "Aynı fixture 'İşlet' kipinde denetlendiğinde hareket ve cam bulguları daha ağır; rapor kip satırını taşıyor ve eşik farkını açıkça söylüyor.",
+      "expectations": [
+        "Başlıkta 'Kip: İşlet' yazılı",
+        "600 ms geçiş ve backdrop-filter bulguları İkna kipine göre daha yüksek şiddet almış",
+        "Kip farkının gerekçesi yazılı"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "render-yok",
+      "prompt": "Bu CSS dosyasının görsel disiplinini denetle. Sayfa render edilemiyor.",
+      "files": ["evals/slop.html"],
+      "expected_output": "Adım 4 'render yok — statik denetim' diye işaretli; alan payı ve glif yedeklemesi 'doğrulanamaz' hükmü almış ve İnsan TODO'da.",
+      "expectations": [
+        "'render yok' notu var",
+        "Vurgu alan payı doğrulanamaz olarak işaretli",
+        "Uydurma render ölçümü yok"
+      ]
+    }
+  ]
+}

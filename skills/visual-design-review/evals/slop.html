@@ -1,0 +1,83 @@
+<!doctype html>
+<!-- FIXTURE: bilerek "yapay zekâ işi" işaretleriyle dolu. Beklenen: tasarim_tara.py ≥ 4 işaret, çıkış kodu 2.
+     Kasıtlı kusurlar: html lang yok · Inter · mor→mavi sRGB degrade · 14 ayrı font boyutu · 6 radius · 5 gölge ·
+     transition: all · 600 ms geçiş · height geçişi · kalıcı will-change · 4 backdrop-filter · saf gri nötrler ·
+     ölçek dışı boşluklar · font-display/size-adjust yok · unicode-range Türkçe gliflerini kapsamıyor ·
+     uppercase + lang yok · outline: none. -->
+<html>
+<head>
+<meta charset="utf-8">
+<title>Panel</title>
+<style>
+@font-face {
+  font-family: "Inter";
+  src: url(/f/inter.woff2) format("woff2");
+  unicode-range: U+0000-00FF;
+}
+:root {
+  --bg: #ffffff;
+  --card: #f5f5f5;
+  --line: #e5e5e5;
+  --text: #171717;
+  --muted: #808080;
+  --accent: #6366f1;
+}
+body { font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--text); font-size: 16px; }
+.hero { background: linear-gradient(135deg, #7c3aed, #2563eb); padding: 72px 18px; text-align: center; }
+.hero h1 { font-size: 56px; background: linear-gradient(90deg, #a855f7, #3b82f6); -webkit-background-clip: text; }
+.hero p { font-size: 19px; color: #6b7280; }
+.eyebrow { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.badge { font-size: 12px; border-radius: 9999px; padding: 3px 9px; background: var(--accent); }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; padding: 34px 18px; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 26px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.08);
+  transition: all .3s ease;
+  will-change: transform;
+  backdrop-filter: blur(12px);
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,.18); }
+.card h3 { font-size: 21px; }
+.card p { font-size: 15px; color: var(--muted); }
+.card .icon { width: 38px; height: 38px; border-radius: 10px; background: var(--accent); }
+.panel { border-radius: 18px; box-shadow: 0 2px 6px rgba(0,0,0,.1); backdrop-filter: blur(20px); padding: 30px 14px; }
+.panel h2 { font-size: 28px; }
+.panel .kpi { font-size: 34px; }
+.panel .label { font-size: 13px; text-transform: uppercase; letter-spacing: .09em; }
+table { font-size: 14px; }
+th { text-transform: uppercase; font-size: 12px; letter-spacing: .07em; }
+.toast { border-radius: 6px; box-shadow: 0 8px 24px rgba(0,0,0,.2); backdrop-filter: saturate(180%) blur(8px); }
+.drawer { transition: height 600ms ease, padding 600ms ease; backdrop-filter: blur(6px); border-radius: 22px; }
+.btn { border-radius: 8px; background: linear-gradient(180deg, #818cf8, #4f46e5); box-shadow: 0 1px 0 #fff inset; }
+.btn:focus { outline: none; }
+.btn-ghost { border-radius: 4px; outline: 0; }
+.footnote { font-size: 10px; }
+.quote { font-size: 23px; }
+.nav a { font-size: 17px; padding: 7px 11px; }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <p class="eyebrow">Yeni · Sürüm 2</p>
+    <h1>Geleceği birlikte inşa edin</h1>
+    <p>Her şeyi tek yerden yönetin. Hemen keşfedin.</p>
+    <button class="btn">Keşfet</button>
+  </section>
+  <section class="cards">
+    <article class="card"><div class="icon"></div><h3>Hızlı</h3><p>Harika bir deneyim sunar.</p></article>
+    <article class="card"><div class="icon"></div><h3>Güçlü</h3><p>Harika bir deneyim sunar.</p></article>
+    <article class="card"><div class="icon"></div><h3>Güvenli</h3><p>Harika bir deneyim sunar.</p></article>
+  </section>
+  <section class="panel">
+    <h2>Özet</h2>
+    <p class="label">Toplam kullanıcı</p>
+    <p class="kpi">1248</p>
+    <table><thead><tr><th>Ad</th><th>Durum</th></tr></thead><tbody><tr><td>Ayşe</td><td>Etkin</td></tr></tbody></table>
+  </section>
+  <div class="toast">Kaydedildi</div>
+  <div class="drawer"></div>
+</body>
+</html>

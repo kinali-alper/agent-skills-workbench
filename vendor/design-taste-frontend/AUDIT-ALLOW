@@ -1,2 +1,6 @@
 # Tanınmayan alan: Google Material Web bileşen belgeleri (meşru referans)
 ^material-web\.dev$
+# Sürüm pinlenmemiş çağrı: shadcn/ui kurulum komutunun BELGELENMESİ (kullanıcıya öneri), skill'in kendisi
+# bir şey çalıştırmıyor; `npx shadcn@latest` upstream shadcn belgelerinin standart komutu. 3 satır, dosya:satır.
+^SKILL\.md:(99|1006|1007):
+

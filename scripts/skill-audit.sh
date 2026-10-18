@@ -21,6 +21,11 @@ allow_filter() {  # stdin: bulgular (göreli yollu) → stdout: izin listesinde 
   else cat; fi
 }
 
+# Kendi inceleme notlarimiz bulgu uretmez: install.sh REVIEW.md ve AUDIT-ALLOW'i kopyalamaz,
+# yani ajan onlari hic gormez. Dosya kumesini daraltmak yerine satirlari yol on ekiyle susuyoruz
+# (grep'te --exclude ile --include birlikte verilince dosya kumesi genisliyor).
+drop_meta() { grep -vE '^(REVIEW\.md|AUDIT-ALLOW):' || true; }
+
 scan_one() {
   local dir="${1%/}"; local crit=0; local warn=0
   local rel="s|^$dir/||"
@@ -42,35 +47,41 @@ scan_one() {
   echo "--- 2. Frontmatter (allowed-tools, hooks, metadata)"
   local sk="$dir/SKILL.md"
   if [ -f "$sk" ]; then
-    local first; first=$(head -c 3 "$sk" | od -An -tx1 | tr -d ' 
-')
-    local l1; l1=$(sed -n '1p' "$sk" | tr -d '
-')
+    local first; first=$(head -c 3 "$sk" | od -An -tx1 | tr -d ' \r\n')
+    local l1; l1=$(sed -n '1p' "$sk" | tr -d '\r')
     if [ "$l1" != "---" ]; then
       echo "${RED}    [KRİTİK] SKILL.md ilk satırı '---' değil (BOM/boş satır/gizli önek: $([ "$first" = "efbbbf" ] && echo 'UTF-8 BOM' || echo "'${l1:0:40}'")) — spesifikasyon dışı, frontmatter gizlenmiş olabilir${NC}"; crit=1
     fi
   fi
   # frontmatter bloğunu ilk 5 satır içinde başladığı yerden oku (gizlemeye karşı)
-  local fm; fm=$(find "$dir" -name "SKILL.md" -exec awk 'NR<=5&&!p&&/^ï?»?¿?---
-?$/{p=1;next} p&&/^---
-?$/{exit} p' {} \; | grep -viE "^(name|description|license):" | grep -vE "^\s*$")
+  local fm; fm=$(find "$dir" -name "SKILL.md" -exec awk 'NR<=5&&!p&&/^---\r?$/{p=1;next} p&&/^---\r?$/{exit} p' {} \; | grep -viE "^(name|description|license):" | grep -vE "^\s*$")
   if echo "$fm" | grep -qiE "allowed-tools|hooks?:|pre[_-]?run|post[_-]?run|command:"; then
     echo "${RED}    [KRİTİK] Yetki/hook alanı var:${NC}"; echo "$fm" | sed 's/^/      /'; crit=1
   elif [ -n "$fm" ]; then echo "${YEL}    [BİLGİ] Ek alanlar:${NC}"; echo "$fm" | sed 's/^/      /'
   else echo "${GRN}    yalnız name/description${NC}"; fi
 
   echo "--- 3. Tehlikeli komut kalıpları"
-  local danger; danger=$(grep -rniE "\bcurl\b|\bwget\b|Invoke-WebRequest|Invoke-Expression|\biex\b|\beval\(|\bexec\(|base64|\bnc -|\brm -rf|chmod \+x|\bsudo\b|\.env\b|api[_-]?key|secret|password|credential|\bssh\b|\btoken\b" --include="*.md" "$dir" 2>/dev/null | grep -viE "$BENIGN" | sed "$rel" | allow_filter "$ALLOW")
+  local danger; danger=$(grep -rniE "\bcurl\b|\bwget\b|Invoke-WebRequest|Invoke-Expression|\biex\b|\beval\(|\bexec\(|base64|\bnc -|\brm -rf|chmod \+x|\bsudo\b|\.env\b|api[_-]?key|secret|password|credential|\bssh\b|\btoken\b" --include="*.md" "$dir" 2>/dev/null | grep -viE "$BENIGN" | sed "$rel" | drop_meta | allow_filter "$ALLOW")
   if [ -n "$danger" ]; then echo "${YEL}    [UYARI] İncele:${NC}"; echo "$danger" | cut -c1-200 | sed 's/^/      /'; warn=1
   else echo "${GRN}    yok${NC}"; fi
 
+  echo "--- 3b. Sürümsüz/kendini güncelleyen çağrı ve çalışma zamanı ikili indirme"
+  # Sürüm pinlenmemiş çağrı: skill her koşuda farklı kod çalıştırabilir (tedarik zinciri).
+  local unpin; unpin=$(grep -rniE "npx +(--yes +|-y +)?[a-z0-9@/._-]+@latest|npx +(--yes|-y) +[a-z0-9@/._-]+([^@a-z0-9._-]|\$)|bunx +[a-z0-9@/._-]+|p?npm +dlx|yarn +dlx|uvx +[a-z0-9._-]+([^=]|\$)|pipx +run +[a-z0-9._-]+([^=]|\$)|go +run +[^ ]+@latest|cargo +install +[a-z0-9._-]+([^-]|\$)" --include="*.md" "$dir" 2>/dev/null | grep -viE "$BENIGN" | sed "$rel" | drop_meta | allow_filter "$ALLOW")
+  if [ -n "$unpin" ]; then echo "${YEL}    [UYARI] Sürüm pinlenmemiş çağrı — REVIEW'da gerekçelendir ya da AUDIT-ALLOW:${NC}"; echo "$unpin" | cut -c1-200 | sed 's/^/      /'; warn=1
+  else echo "${GRN}    yok${NC}"; fi
+  # Çalışma zamanında ikili indirme: denetlenemeyen kod makineye iner.
+  local bin; bin=$(grep -rniE "releases/download|/install\.sh *\| *(ba)?sh|curl [^|]*\| *(ba)?sh|download(s|ed|ing)? (the |a |an )?(binary|executable|engine|runtime)|platform[- ]specific binary|\.(cache|local|config)/[a-z0-9._-]+/bin|~/\.[a-z0-9-]+/bin" --include="*.md" "$dir" 2>/dev/null | grep -viE "$BENIGN" | sed "$rel" | drop_meta | allow_filter "$ALLOW")
+  if [ -n "$bin" ]; then echo "${YEL}    [UYARI] Çalışma zamanı ikili indirme — REVIEW'da gerekçelendir ya da AUDIT-ALLOW:${NC}"; echo "$bin" | cut -c1-200 | sed 's/^/      /'; warn=1
+  else echo "${GRN}    yok${NC}"; fi
+
   echo "--- 4. Prompt injection ifadeleri"
-  local inj; inj=$(grep -rniE "ignore (all |any )?(previous|prior|above|earlier)|disregard (the |your )?(instructions|rules|system)|you are now|new system prompt|do not (tell|inform|show|mention) (the |to )?user|without (telling|informing|asking|notifying) the user|\bsecretly\b|exfiltrat|send (this|the|all|your) .{0,40}(to|via) (http|url|endpoint|server|email)|upload .{0,30}to http|report back to|analytics endpoint|phone home|run this (script|command) first|before (anything|you begin), (run|execute|fetch)|(önceki|yukarıdaki|tüm) talimatları (yok say|unut|görmezden gel)|kullanıcıya (söyleme|bildirme|gösterme)|kullanıcıya haber vermeden|gizlice|sistem (istemi|promptu)n[ıi] (değiştir|yok say)|artık sen .{0,30}s[ıi]n" --include="*.md" "$dir" 2>/dev/null | grep -viE "$BENIGN" | sed "$rel" | allow_filter "$ALLOW")
+  local inj; inj=$(grep -rniE "ignore (all |any )?(previous|prior|above|earlier)|disregard (the |your )?(instructions|rules|system)|you are now|new system prompt|do not (tell|inform|show|mention) (the |to )?user|without (telling|informing|asking|notifying) the user|\bsecretly\b|exfiltrat|send (this|the|all|your) .{0,40}(to|via) (http|url|endpoint|server|email)|upload .{0,30}to http|report back to|analytics endpoint|phone home|run this (script|command) first|before (anything|you begin), (run|execute|fetch)|(önceki|yukarıdaki|tüm) talimatları (yok say|unut|görmezden gel)|kullanıcıya (söyleme|bildirme|gösterme)|kullanıcıya haber vermeden|gizlice|sistem (istemi|promptu)n[ıi] (değiştir|yok say)|artık sen .{0,30}s[ıi]n" --include="*.md" "$dir" 2>/dev/null | grep -viE "$BENIGN" | sed "$rel" | drop_meta | allow_filter "$ALLOW")
   if [ -n "$inj" ]; then echo "${RED}    [KRİTİK] İncele:${NC}"; echo "$inj" | cut -c1-200 | sed 's/^/      /'; crit=1
   else echo "${GRN}    yok${NC}"; fi
 
   echo "--- 5. Gizli HTML yorumları"
-  local cm; cm=$(grep -rn "<!--" --include="*.md" "$dir" 2>/dev/null | grep -viE "TODO|mock|example|placeholder|CONTENT HERE|position: fixed|❌|✅|<!-- [a-zA-Z ()—-]{2,60} -->" | sed "$rel" | allow_filter "$ALLOW")
+  local cm; cm=$(grep -rn "<!--" --include="*.md" "$dir" 2>/dev/null | grep -viE "TODO|mock|example|placeholder|CONTENT HERE|position: fixed|❌|✅|<!-- [a-zA-Z ()—-]{2,60} -->" | sed "$rel" | drop_meta | allow_filter "$ALLOW")
   if [ -n "$cm" ]; then echo "${YEL}    [UYARI] Örnek kod dışı yorum:${NC}"; echo "$cm" | cut -c1-200 | sed 's/^/      /'; warn=1
   else echo "${GRN}    yok / yalnız örnek kod içinde${NC}"; fi
 
@@ -82,7 +93,8 @@ root=pathlib.Path(sys.argv[1])
 EXT={'.md','.txt','.sh','.bash','.js','.cjs','.mjs','.ts','.json','.yaml','.yml','.html','.css','.toml','.py','.cmd','.ps1'}
 for p in root.rglob('*'):
     if '.git' in p.parts or not p.is_file(): continue
-    if p.suffix.lower() not in EXT and p.name not in ('AUDIT-ALLOW','LICENSE'): continue
+    if p.name in ('REVIEW.md','AUDIT-ALLOW'): continue  # bizim notumuz; kurulmuyor
+    if p.suffix.lower() not in EXT and p.name not in ('LICENSE',): continue
     for i,l in enumerate(p.read_text(encoding='utf-8',errors='replace').splitlines(),1):
         if bad.search(l): print(f"{p.relative_to(root).as_posix()}:{i}")
 PY

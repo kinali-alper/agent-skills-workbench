@@ -1,0 +1,32 @@
+[
+ {
+  "query": "Kayıt formumuz WCAG 2.2 AA'ya uyuyor mu? Uymayan yerleri ve nasıl düzeltileceğini rapor et, dosyaya dokunma.",
+  "should_trigger": true,
+  "tag": "TR·intent·nopath"
+ },
+ {
+  "query": "Bu formu klavyeyle kullanmak mümkün mü, ekran okuyucu etiketleri doğru mu, hata mesajları anlaşılır mı — bir UX/erişilebilirlik incelemesi istiyorum.",
+  "should_trigger": true,
+  "tag": "TR·intent·nopath"
+ },
+ {
+  "query": "axe temiz çıktı ama kullanıcılar formda takılıyor. İnsan gözüyle bir kullanılabilirlik ve erişilebilirlik denetimi yap, otomatik araçların kaçırdıklarını bul.",
+  "should_trigger": true,
+  "tag": "TR·blindspot·nopath"
+ },
+ {
+  "query": "Tasarım ekibi RegisterForm ekranının kullanılabilirliğini sorguluyor. Nielsen heuristikleriyle şiddet dereceli bir inceleme raporu çıkarır mısın?",
+  "should_trigger": true,
+  "tag": "TR·nielsen·nopath"
+ },
+ {
+  "query": "Before we ship the registration page, audit it for accessibility and usability problems and give me a prioritized findings report.",
+  "should_trigger": true,
+  "tag": "EN·intent·nopath"
+ },
+ {
+  "query": "Review the registration form markup for a11y issues and heuristic violations (labels, focus, error messages, target sizes). I only want the report.",
+  "should_trigger": true,
+  "tag": "EN·detail·nopath"
+ }
+]

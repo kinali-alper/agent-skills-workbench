@@ -1,0 +1,102 @@
+<!doctype html>
+<!-- FIXTURE: aynı ekranın disiplinli hâli. Beklenen: tasarim_tara.py 0–1 işaret, çıkış kodu 0.
+     lang="tr" · tek karakterli başlık tipi + metin tipi · OKLCH tonlanmış nötrler · 7 font boyutu · 3 radius ·
+     2 gölge · yalnız transform/opacity geçişi, 120–250 ms · backdrop-filter yalnız yapışkan gezintide ·
+     4 px tabanlı boşluk ölçeği · font-display + size-adjust + Türkçe unicode-range · :focus-visible. -->
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Özet — Yönetim</title>
+<style>
+@font-face {
+  font-family: "Basliklik";
+  src: url(/f/basliklik.woff2) format("woff2");
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0100-017F;
+}
+@font-face {
+  font-family: "Govde";
+  src: url(/f/govde.woff2) format("woff2");
+  font-display: optional;
+  unicode-range: U+0000-00FF, U+0100-017F;
+}
+@font-face {
+  font-family: "Govde-yedek";
+  src: local("Arial");
+  size-adjust: 104%;
+  ascent-override: 92%;
+}
+:root {
+  /* nötrler tonlanmış: krom 0,004 → 0,042, hue sabit 255 */
+  --yuzey:      oklch(0.985 0.004 255);
+  --yuzey-2:    oklch(0.962 0.008 255);
+  --cizgi:      oklch(0.921 0.013 255);
+  --metin-soluk:oklch(0.465 0.035 255);
+  --metin:      oklch(0.208 0.042 255);
+  --vurgu:      oklch(0.55 0.13 196);
+  --vurgu-koyu: color-mix(in oklab, var(--vurgu) 86%, black);
+  --r-kucuk: 4px;
+  --r-orta: 8px;
+  --r-pill: 999px;
+  --golge-1: 0 1px 2px oklch(0.2 0.03 255 / 0.08);
+  --golge-2: 0 8px 24px oklch(0.2 0.03 255 / 0.14);
+  --sure-mikro: 120ms;
+  --sure-ui: 200ms;
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+}
+body { font-family: Govde, "Govde-yedek", sans-serif; background: var(--yuzey); color: var(--metin); font-size: 17px; line-height: 1.5; }
+h1 { font-family: Basliklik, serif; font-size: 44px; line-height: 1.1; letter-spacing: -0.015em; }
+h2 { font-family: Basliklik, serif; font-size: 26px; }
+.kpi { font-size: 32px; font-variant-numeric: tabular-nums; }
+.yardim { font-size: 15px; color: var(--metin-soluk); }
+.dipnot { font-size: 13px; color: var(--metin-soluk); }
+.nav { position: sticky; top: 0; backdrop-filter: blur(8px); background: oklch(0.985 0.004 255 / 0.82); padding: 12px 16px; }
+.kart {
+  background: var(--yuzey-2);
+  border-radius: var(--r-orta);
+  padding: 20px;
+  box-shadow: var(--golge-1);
+  transition: transform var(--sure-ui) var(--ease), opacity var(--sure-ui) var(--ease);
+}
+.kart:hover { transform: translateY(-2px); box-shadow: var(--golge-2); }
+.dugme {
+  border-radius: var(--r-kucuk);
+  background: var(--vurgu);
+  color: var(--yuzey);
+  padding: 8px 16px;
+  transition: transform var(--sure-mikro) var(--ease), background-color var(--sure-mikro) var(--ease);
+}
+.dugme:hover { background: var(--vurgu-koyu); }
+.dugme:active { transform: scale(0.97); }
+.dugme:focus-visible { outline: 2px solid var(--vurgu); outline-offset: 2px; }
+.etiket { border-radius: var(--r-pill); padding: 4px 12px; background: var(--yuzey-2); font-size: 15px; }
+table { font-size: 17px; border-collapse: collapse; }
+th { text-align: left; font-weight: 600; padding: 8px 12px; border-bottom: 1px solid var(--cizgi); }
+td { padding: 8px 12px; font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) {
+  .kart, .dugme { transition: opacity var(--sure-ui) linear; transform: none; }
+}
+</style>
+</head>
+<body>
+  <nav class="nav"><a class="etiket" href="/ozet">Özet</a> <a class="etiket" href="/kayitlar">Kayıtlar</a></nav>
+  <main>
+    <h1>Bu haftanın özeti</h1>
+    <p class="yardim">Rakamlar pazartesi 00.00'dan bu yana. Ayrıntı için satıra tıklayın.</p>
+    <section class="kart">
+      <h2>Etkin kullanıcı</h2>
+      <p class="kpi">1.248</p>
+      <button class="dugme" type="button">Dökümü indir</button>
+    </section>
+    <table>
+      <caption class="dipnot">Son kayıtlar</caption>
+      <thead><tr><th scope="col">Ad soyad</th><th scope="col">Durum</th><th scope="col">Tutar</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Ayşe Yılmaz</th><td>Etkin</td><td>1.240,50 ₺</td></tr>
+        <tr><th scope="row">Mehmet Şahin</th><td>Beklemede</td><td>318,00 ₺</td></tr>
+      </tbody>
+    </table>
+    <p class="dipnot">Veri kaynağı: <span lang="en">billing service</span></p>
+  </main>
+</body>
+</html>

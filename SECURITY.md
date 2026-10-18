@@ -6,6 +6,9 @@ Independent scans of the skill ecosystem have found prompt-injection payloads in
 This repository therefore:
 - audits every vendored skill with `scripts/skill-audit.sh` (scripts, hooks, `allowed-tools`, dangerous commands,
   injection phrases, hidden Unicode, external domains) and records the result in `vendor/<name>/REVIEW.md`;
+- flags **unpinned self-updating invocations** (`npx --yes …@latest`, `uvx`, `pnpm dlx`) and **runtime binary downloads**
+  (`releases/download`, `~/.x/bin`, `install.sh | sh`) as warnings that must be justified in `REVIEW.md` or allowed per file:line;
+- never scans our own `REVIEW.md` / `AUDIT-ALLOW` as skill content — `install.sh` does not copy them, so no agent ever reads them;
 - refuses to install a skill without a `REVIEW.md` (`scripts/install.sh`);
 - pins each vendored skill to a source commit (blob-hash matched) and records every vendor file's sha256 in `vendor/INTEGRITY.sha256`, which `install.sh` verifies before copying;
 - keeps a regression corpus of malicious and benign samples (`evals/audit/`) so audit changes cannot silently weaken the gate.

@@ -1,0 +1,442 @@
+{
+  "skill_name": "ux-a11y-review",
+  "description": "Arayüzü denetle — tam UX + erişilebilirlik denetimi (kullanılabilirlik incelemesi ve erişilebilirlik kontrolü tek raporda). Use for a full UX + accessibility review of UI source (TSX, HTML, Razor, Vue, Svelte, Framer) — findings as file:line with WCAG 2.2 / Nielsen H# and a concrete fix. Report-only; does not edit files.",
+  "model": "claude-opus-5",
+  "date": "2026-10-16",
+  "commands_dir": "~/.claude/commands",
+  "max_turns": 6,
+  "runs_per_query": 3,
+  "threshold": 0.5,
+  "results": [
+    {
+      "query": "Kayıt formumuz WCAG 2.2 AA'ya uyuyor mu? Uymayan yerleri ve nasıl düzeltileceğini rapor et, dosyaya dokunma.",
+      "tag": "TR·intent·nopath",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": false,
+      "any_clean_rate": 1.0,
+      "any_raw_rate": 1.0,
+      "valid_runs": 3,
+      "pass_any": true,
+      "ended": [
+        "error_max_turns",
+        "error_max_turns",
+        "success"
+      ],
+      "first_tools": [
+        "Bash",
+        "Bash",
+        "Bash"
+      ],
+      "skill_turns": [
+        6,
+        6,
+        7
+      ],
+      "skills_called": [
+        [
+          "<TEST-SKILL>"
+        ],
+        [
+          "ux-a11y-review-skill-e101b1ae"
+        ],
+        [
+          "ux-a11y-review-skill-3fcd2d5c"
+        ]
+      ],
+      "tools": [
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Bash",
+          "Bash",
+          "Skill"
+        ],
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Bash",
+          "Bash",
+          "Skill"
+        ],
+        [
+          "Bash",
+          "Glob",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Skill"
+        ]
+      ],
+      "self_read": 0,
+      "timeouts": 0,
+      "cost_usd": 4.0581
+    },
+    {
+      "query": "Bu formu klavyeyle kullanmak mümkün mü, ekran okuyucu etiketleri doğru mu, hata mesajları anlaşılır mı — bir UX/erişilebilirlik incelemesi istiyorum.",
+      "tag": "TR·intent·nopath",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": false,
+      "any_clean_rate": 0.6666666666666666,
+      "any_raw_rate": 0.6666666666666666,
+      "valid_runs": 3,
+      "pass_any": true,
+      "ended": [
+        "error_max_turns",
+        "error_max_turns",
+        "success"
+      ],
+      "first_tools": [
+        "Bash",
+        "Bash",
+        "Bash"
+      ],
+      "skill_turns": [
+        null,
+        5,
+        5
+      ],
+      "skills_called": [
+        [],
+        [
+          "ux-a11y-review-skill-6f4006b1"
+        ],
+        [
+          "ux-a11y-review-skill-2ee335ec"
+        ]
+      ],
+      "tools": [
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Bash",
+          "Bash",
+          "Glob"
+        ],
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Bash",
+          "Skill",
+          "Write"
+        ],
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Bash",
+          "Skill"
+        ]
+      ],
+      "self_read": 0,
+      "timeouts": 0,
+      "cost_usd": 3.232
+    },
+    {
+      "query": "axe temiz çıktı ama kullanıcılar formda takılıyor. İnsan gözüyle bir kullanılabilirlik ve erişilebilirlik denetimi yap, otomatik araçların kaçırdıklarını bul.",
+      "tag": "TR·blindspot·nopath",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": false,
+      "any_clean_rate": 1.0,
+      "any_raw_rate": 1.0,
+      "valid_runs": 3,
+      "pass_any": true,
+      "ended": [
+        "error_max_turns",
+        "error_max_turns",
+        "error_max_turns"
+      ],
+      "first_tools": [
+        "Bash",
+        "Bash",
+        "Bash"
+      ],
+      "skill_turns": [
+        7,
+        5,
+        5
+      ],
+      "skills_called": [
+        [
+          "ux-a11y-review-skill-24296c3a"
+        ],
+        [
+          "ux-a11y-review-skill-6a5d0c3c"
+        ],
+        [
+          "<TEST-SKILL>"
+        ]
+      ],
+      "tools": [
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Skill",
+          "Bash"
+        ],
+        [
+          "Bash",
+          "Read",
+          "Read",
+          "Bash",
+          "Skill",
+          "Write"
+        ],
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Bash",
+          "Skill",
+          "Write"
+        ]
+      ],
+      "self_read": 0,
+      "timeouts": 0,
+      "cost_usd": 3.3671
+    },
+    {
+      "query": "Tasarım ekibi RegisterForm ekranının kullanılabilirliğini sorguluyor. Nielsen heuristikleriyle şiddet dereceli bir inceleme raporu çıkarır mısın?",
+      "tag": "TR·nielsen·nopath",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": false,
+      "any_clean_rate": 0.6666666666666666,
+      "any_raw_rate": 0.6666666666666666,
+      "valid_runs": 3,
+      "pass_any": true,
+      "ended": [
+        "error_max_turns",
+        "error_max_turns",
+        "error_max_turns"
+      ],
+      "first_tools": [
+        "Glob",
+        "Glob",
+        "Bash"
+      ],
+      "skill_turns": [
+        5,
+        null,
+        5
+      ],
+      "skills_called": [
+        [
+          "ux-a11y-review-skill-f9590ff0"
+        ],
+        [
+          "heuristic-evaluation",
+          "anthropic-skills:docs"
+        ],
+        [
+          "ux-a11y-review-skill-68acbe25"
+        ]
+      ],
+      "tools": [
+        [
+          "Glob",
+          "Read",
+          "Bash",
+          "Read",
+          "Skill",
+          "Bash"
+        ],
+        [
+          "Glob",
+          "Bash",
+          "Read",
+          "Bash",
+          "Bash",
+          "Skill",
+          "Skill",
+          "mcp__claude_ai_Claude_Docs__batch"
+        ],
+        [
+          "Bash",
+          "Glob",
+          "Bash",
+          "Read",
+          "Skill",
+          "Read",
+          "Read",
+          "mcp__claude_ai_Claude_Docs__batch"
+        ]
+      ],
+      "self_read": 0,
+      "timeouts": 0,
+      "cost_usd": 2.9957
+    },
+    {
+      "query": "Before we ship the registration page, audit it for accessibility and usability problems and give me a prioritized findings report.",
+      "tag": "EN·intent·nopath",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": false,
+      "any_clean_rate": 1.0,
+      "any_raw_rate": 1.0,
+      "valid_runs": 3,
+      "pass_any": true,
+      "ended": [
+        "error_max_turns",
+        "error_max_turns",
+        "error_max_turns"
+      ],
+      "first_tools": [
+        "Bash",
+        "Bash",
+        "Bash"
+      ],
+      "skill_turns": [
+        6,
+        6,
+        7
+      ],
+      "skills_called": [
+        [
+          "ux-a11y-review-skill-68acbe25"
+        ],
+        [
+          "ux-a11y-review-skill-6c38b09c"
+        ],
+        [
+          "ux-a11y-review-skill-3df42560",
+          "ux-a11y-review-skill-b706ad27"
+        ]
+      ],
+      "tools": [
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Bash",
+          "Skill"
+        ],
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Skill",
+          "Bash"
+        ],
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Bash",
+          "Skill",
+          "Skill"
+        ]
+      ],
+      "self_read": 0,
+      "timeouts": 0,
+      "cost_usd": 2.7776
+    },
+    {
+      "query": "Review the registration form markup for a11y issues and heuristic violations (labels, focus, error messages, target sizes). I only want the report.",
+      "tag": "EN·detail·nopath",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": false,
+      "any_clean_rate": 1.0,
+      "any_raw_rate": 1.0,
+      "valid_runs": 3,
+      "pass_any": true,
+      "ended": [
+        "success",
+        "success",
+        "success"
+      ],
+      "first_tools": [
+        "Bash",
+        "Bash",
+        "Bash"
+      ],
+      "skill_turns": [
+        7,
+        7,
+        6
+      ],
+      "skills_called": [
+        [
+          "ux-a11y-review-skill-b5102154"
+        ],
+        [
+          "ux-a11y-review-skill-3df42560"
+        ],
+        [
+          "ux-a11y-review-skill-6c38b09c"
+        ]
+      ],
+      "tools": [
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Skill"
+        ],
+        [
+          "Bash",
+          "Glob",
+          "Read",
+          "Read",
+          "Read",
+          "Read",
+          "Skill",
+          "Write"
+        ],
+        [
+          "Bash",
+          "Bash",
+          "Read",
+          "Read",
+          "Read",
+          "Skill"
+        ]
+      ],
+      "self_read": 0,
+      "timeouts": 0,
+      "cost_usd": 4.1095
+    }
+  ],
+  "summary": {
+    "total": 6,
+    "passed": 0,
+    "failed": 6,
+    "passed_any": 6,
+    "truncated_runs": 13,
+    "self_read_runs": 0,
+    "cost_usd": 20.54
+  },
+  "note": "commands_dir makine yolundan normalleştirildi (publish-check kuralı); ölçümü etkilemez."
+}

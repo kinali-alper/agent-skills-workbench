@@ -30,18 +30,19 @@ def parse_skill_md(skill_path: Path):
 ORIGINAL_ROOT = None  # set in main(): the --project-root passed on the CLI (fixture source for per-run re-copy)
 
 
-def run_once(query, skill_name, description, roots: "queue.Queue", model, timeout, max_turns):
+def run_once(query, skill_name, description, roots: "queue.Queue", model, timeout, max_turns, commands_dir=None):
     project_root = roots.get()
     try:
-        return _run_once(query, skill_name, description, project_root, model, timeout, max_turns)
+        return _run_once(query, skill_name, description, project_root, model, timeout, max_turns, commands_dir)
     finally:
         roots.put(project_root)
 
 
-def _run_once(query, skill_name, description, project_root: Path, model, timeout, max_turns):
+def _run_once(query, skill_name, description, project_root: Path, model, timeout, max_turns, commands_dir=None):
     uid = uuid.uuid4().hex[:8]
     clean = f"{skill_name}-skill-{uid}"
-    cmd_dir = project_root / ".claude" / "commands"; cmd_dir.mkdir(parents=True, exist_ok=True)
+    cmd_dir = Path(commands_dir) if commands_dir else project_root / ".claude" / "commands"
+    cmd_dir.mkdir(parents=True, exist_ok=True)
     cmd_file = cmd_dir / f"{clean}.md"
     indented = "\n  ".join(description.split("\n"))
     cmd_file.write_text(f"---\ndescription: |\n  {indented}\n---\n\n# {skill_name}\n\nThis skill handles: {description}\n", encoding="utf-8", newline="\n")
@@ -99,6 +100,9 @@ def main():
     ap.add_argument("--timeout", type=int, default=180); ap.add_argument("--max-turns", type=int, default=6)
     ap.add_argument("--threshold", type=float, default=0.5); ap.add_argument("--out", required=True)
     ap.add_argument("--description", default=None, help="override description under test")
+    ap.add_argument("--commands-dir", default=None,
+                    help="write the test command file here instead of <project>/.claude/commands — use the user-level "
+                         "dir (~/.claude/commands) so the model cannot discover it by listing the project (G1)")
     a = ap.parse_args()
     evals = json.loads(Path(a.eval_set).read_text(encoding="utf-8"))
     name, desc = parse_skill_md(Path(a.skill_path))
@@ -115,7 +119,7 @@ def main():
     jobs = [(i, k) for i, _ in enumerate(evals) for k in range(a.runs_per_query)]
     runs = {i: [] for i in range(len(evals))}
     with ThreadPoolExecutor(max_workers=a.num_workers) as ex:
-        futs = {ex.submit(run_once, evals[i]["query"], name, desc, roots, a.model, a.timeout, a.max_turns): (i, k) for i, k in jobs}
+        futs = {ex.submit(run_once, evals[i]["query"], name, desc, roots, a.model, a.timeout, a.max_turns, a.commands_dir): (i, k) for i, k in jobs}
         for f in as_completed(futs):
             i, k = futs[f]; runs[i].append(f.result())
             e = evals[i]; rr = runs[i][-1]
@@ -137,6 +141,7 @@ def main():
                         "self_read": sum(r["self_read"] for r in rs), "timeouts": sum(r["timeout"] for r in rs),
                         "cost_usd": round(sum(r["cost"] or 0 for r in rs), 4)})
     out = {"skill_name": name, "description": desc, "model": a.model, "date": date.today().isoformat(),
+           "commands_dir": a.commands_dir or "<project>/.claude/commands",
            "max_turns": a.max_turns, "runs_per_query": a.runs_per_query, "threshold": a.threshold,
            "results": results,
            "summary": {"total": len(evals), "passed": passed, "failed": len(evals) - passed,

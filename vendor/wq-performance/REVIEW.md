@@ -12,6 +12,8 @@
 | Karar | **ONAYLI** |
 
 ## Notlar
-- Skill adı çakışma riskine karşı `wq-` öneki ile kuruldu (frontmatter `name` alanı orijinal kaldı).
+- Skill adı çakışma riskine karşı `wq-` öneki ile kuruldu; **frontmatter `name` alanı da `wq-performance` olarak
+  değiştirildi** (klasör adı = `name` kuralı). Pinlenen upstream blob'u ile farkımız tam olarak bu tek satır —
+  16 Eki 2026'da blob karşılaştırmasıyla ölçüldü. Önceki kayıt "`name` alanı orijinal kaldı" diyordu; yanlıştı.
 - Stack: bağımsız (React/Vue/Angular/Svelte/Next/Nuxt/Astro/HTML örnekleri var).
 
